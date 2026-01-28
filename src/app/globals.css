@@ -1,26 +1,30 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Define custom theme for TailwindCSS v4 */
+@theme {
+  /* Custom color palette - Terminal theme */
+  --color-terminal-dark: #0a0a0a;
+  --color-terminal-darker: #050505;
+  --color-terminal-green: #00ff41;
+  --color-terminal-accent: #bd00ff;
+  --color-terminal-dim: #4a5568;
+
+  /* Custom font families */
+  --font-family-pixel: var(--font-pixel);
+  --font-family-mono: var(--font-mono);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--color-terminal-dark);
+    background-image: linear-gradient(to right, #1f1f1f 1px, transparent 1px),
+      linear-gradient(to bottom, #1f1f1f 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
 }
