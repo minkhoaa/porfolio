@@ -71,7 +71,7 @@ Redesign personal portfolio with a Neo-Retro aesthetic: pixel typography (Press 
 ### Page Transition
 - **Pixel dissolve:** Current page breaks into pixel blocks, new page assembles from pixels
 - **Glitch flash:** Brief CRT-style flicker between pages
-- Implementation: Next.js View Transitions API or Framer Motion
+- Implementation: Framer Motion (AnimatePresence + motion components) — chosen over View Transitions API for broader browser support and finer animation control
 
 ## 5. Page Designs
 
@@ -105,13 +105,15 @@ Redesign personal portfolio with a Neo-Retro aesthetic: pixel typography (Press 
 
 **Profile Section**
 - Pixel avatar (80x80, placeholder — user adds real image later)
-- "● AVAILABLE" status badge (toggleable)
+- "● AVAILABLE" status badge (driven by `available` field in `profile.ts`)
 - Name, role, bio paragraph
 
 **Experience Timeline**
 - Vertical timeline with left border
 - Timeline dots: amber (current) / brown (past) with pulse animation
-- Each entry: date range, title, description (placeholder content)
+- Placeholder entries (user updates later):
+  - "2023 — Present" / "Backend Developer" / "Building scalable .NET backend systems"
+  - "2023" / "Started Coding" / "Began programming journey with C# and .NET"
 
 **Skills Detail**
 - 2x2 grid of skill categories:
@@ -159,7 +161,14 @@ Redesign personal portfolio with a Neo-Retro aesthetic: pixel typography (Press 
 - Terminal-style labels: `> NAME`, `> EMAIL`, `> MESSAGE`
 - Input fields with amber border on focus
 - Submit button: "SEND_MESSAGE.exe ▶" with glitch hover effect
-- Form backend: API route or Formspree (placeholder)
+- Form backend: Next.js API route (`app/api/contact/route.ts`) — initially logs to console, user can wire up email service later
+- Validation:
+  - Client-side: all fields required, email format check before submit
+  - Server-side: validate non-empty name/email/message, email regex, return `{ success: boolean, error?: string }`
+  - Request body: `{ name: string, email: string, message: string }`
+  - Success: HTTP 200 `{ success: true }`
+  - Error: HTTP 400 `{ success: false, error: "Validation message" }`
+- States: idle → sending (button disabled + loading text) → success message / error message
 
 **Social Links**
 - Vertical stack of 4 cards: GitHub, LinkedIn, Email, Facebook
@@ -170,16 +179,16 @@ Redesign personal portfolio with a Neo-Retro aesthetic: pixel typography (Press 
 
 | Effect | Where | Implementation |
 |--------|-------|----------------|
-| Typing animation | Hero greeting | CSS animation + JS |
+| Typing animation | Hero greeting | JS `setInterval` character-by-character with React state |
 | Glitch text | Hero name, button hovers | CSS text-shadow keyframes |
-| Pixel particles | Hero background | Canvas or CSS particles |
-| Pixel dissolve transition | Page navigation | Framer Motion / View Transitions |
+| Pixel particles | Hero background (nice-to-have) | Canvas with requestAnimationFrame |
+| Pixel dissolve transition | Page navigation | Framer Motion (AnimatePresence) |
 | CRT glitch flash | Page transitions | CSS overlay flash |
 | Fade-in + slide-up | Cards, sections on scroll | Intersection Observer + CSS |
 | Staggered reveal | Tech grid, skills, projects | CSS animation-delay |
 | Border glow | Card/button hover | CSS box-shadow transition |
 | Parallax grid | Background | Scroll event + transform |
-| Cursor particle trail | Global | Canvas overlay |
+| Cursor particle trail | Global (desktop only, nice-to-have) | Canvas overlay |
 | Number glitch | Project card hover | CSS/JS random text flicker |
 | Timeline dot pulse | About timeline | CSS pulse keyframes |
 
@@ -195,7 +204,7 @@ interface Project {
   description: string;
   overview: string;
   tech: string[];
-  language: string; // for filter: "csharp" | "typescript" | "java"
+  language: "csharp" | "typescript" | "java";
   role: string;
   github: string;
   live?: string;
@@ -205,17 +214,65 @@ interface Project {
 }
 ```
 
-Social links and personal info in `src/data/profile.ts`.
+Profile data stored in `src/data/profile.ts`:
 
-## 8. Technical Considerations
+```typescript
+interface SocialLink {
+  platform: "github" | "linkedin" | "email" | "facebook";
+  url: string;
+  label: string;
+}
+
+interface ExperienceEntry {
+  dateRange: string;
+  title: string;
+  description: string;
+  current: boolean;
+}
+
+interface Profile {
+  name: string;
+  role: string;
+  bio: string;
+  location: string;
+  available: boolean;
+  avatar?: string;
+  socials: SocialLink[];
+  experience: ExperienceEntry[];
+  skills: {
+    category: string;
+    items: string[];
+  }[];
+}
+```
+
+## 8. Dependencies
+
+New packages to install:
+- `framer-motion` — page transitions (AnimatePresence), project card animations, layout animations
+
+Fonts loaded via `next/font/google` in `layout.tsx`:
+- Press Start 2P
+- JetBrains Mono
+
+## 9. Technical Considerations
 
 - **Performance:** Heavy animations need optimization — use `will-change`, GPU-accelerated properties, lazy-load animations off-screen, reduce particle count on mobile
 - **Responsive:** Mobile-first approach. Pixel fonts scale down well but need minimum sizes. Grid layouts collapse to single column. Hamburger menu on mobile.
 - **Accessibility:** Respect `prefers-reduced-motion` — disable particle effects, simplify transitions. Ensure sufficient color contrast for amber-on-dark.
 - **SEO:** Multi-page structure with proper meta tags, Open Graph images, semantic HTML
 - **No external dependencies for data:** All content in local config files, easy to update
+- **404 handling:** Invalid `/projects/[slug]` returns Next.js `notFound()` → custom 404 page with retro styling
+- **Animation priority:** Must-have: typing, glitch text, fade-in on scroll, hover effects, page transitions. Nice-to-have: cursor particle trail (desktop only), pixel particles in hero
 
-## 9. Project Structure
+## 10. Responsive Breakpoints
+
+Use Tailwind v4 defaults:
+- `sm` (640px): mobile adjustments
+- `md` (768px): tablet — project grid 2 columns
+- `lg` (1024px): desktop — project grid 3 columns, two-column layouts
+
+## 11. Project Structure
 
 ```
 src/
@@ -225,8 +282,11 @@ src/
 │   ├── about/page.tsx
 │   ├── projects/
 │   │   ├── page.tsx        (projects list)
-│   │   └── [slug]/page.tsx (project detail)
+│   │   └── [slug]/
+│   │       └── page.tsx    (project detail)
+│   ├── not-found.tsx         (custom 404 page)
 │   ├── contact/page.tsx
+│   ├── api/contact/route.ts  (contact form handler)
 │   └── globals.css
 ├── components/
 │   ├── Nav.tsx
@@ -244,9 +304,7 @@ src/
 │       ├── TypingAnimation.tsx
 │       ├── PixelParticles.tsx
 │       └── ParallaxGrid.tsx
-├── data/
-│   ├── projects.ts
-│   └── profile.ts
-└── lib/
-    └── utils.ts
+└── data/
+    ├── projects.ts
+    └── profile.ts
 ```
