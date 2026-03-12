@@ -27,29 +27,34 @@ The current portfolio uses a Neo-Retro pixel aesthetic (Press Start 2P + JetBrai
 
 ### `src/data/profile.ts`
 
-Expand the profile data to support RPG presentation:
+Add new fields to the existing `Profile` interface. Keep existing types (`SocialLink`, `ExperienceEntry`) unchanged.
 
 ```typescript
-interface Profile {
-  name: string;
-  role: string;           // displayed as "CLASS"
-  level: number;          // years since started coding (2023 = LVL 03)
-  bio: string;            // displayed as "BACKSTORY" — expand to 3-4 sentences
-  location: string;       // displayed as "ORIGIN"
-  available: boolean;     // displayed as "AVAILABLE FOR PARTY"
-  socials: Social[];
-  experience: Experience[];
-  skills: SkillCategory[];
-  stats: CharacterStat[]; // NEW
-}
-
-interface CharacterStat {
+// NEW interface
+export interface CharacterStat {
   name: string;           // e.g., "BACKEND", "FRONTEND", "DEVOPS", "DATABASE"
   value: number;          // 0-100
 }
+
+// Updated Profile interface — add `level` and `stats`, remove `avatar?` (unused in RPG layout)
+export interface Profile {
+  name: string;
+  role: string;           // displayed as "CLASS"
+  level: number;          // NEW — years since started coding (2023 → LVL 03)
+  bio: string;            // displayed as "BACKSTORY" — expand to 3-4 sentences
+  location: string;       // displayed as "ORIGIN"
+  available: boolean;     // displayed as "AVAILABLE FOR PARTY"
+  socials: SocialLink[];  // existing type, unchanged
+  experience: ExperienceEntry[];  // existing type, unchanged (already has `description`)
+  skills: {               // existing inline type, unchanged
+    category: string;
+    items: string[];
+  }[];
+  stats: CharacterStat[]; // NEW
+}
 ```
 
-Add `stats` array to profile:
+Add `stats` array to profile data:
 ```typescript
 stats: [
   { name: "BACKEND", value: 90 },
@@ -59,16 +64,22 @@ stats: [
 ]
 ```
 
+Add `level: 3` to profile data.
+
 Expand bio to a fuller backstory (3-4 sentences about the developer's journey).
+
+Note: `ExperienceEntry` already has a `description: string` field — no schema change needed, just ensure the existing descriptions are meaningful.
 
 ### `src/data/projects.ts`
 
 Add `difficulty` field to Project interface:
 
 ```typescript
-interface Project {
+export type DifficultyLevel = 1 | 2 | 3 | 4 | 5;
+
+export interface Project {
   // ... existing fields
-  difficulty: 1 | 2 | 3 | 4 | 5;  // NEW — displayed as ■■■□□
+  difficulty: DifficultyLevel;  // NEW — displayed as ■■■□□
 }
 ```
 
@@ -108,14 +119,27 @@ DATABASE  ██████████████░░░░  75
 - CTA buttons: `font-pixel text-[11px]` — "QUEST LOG" links to /projects, "CHARACTER SHEET" links to /about
 
 **Stat Bar component** (`src/components/StatBar.tsx`):
-- Label: `font-pixel text-[10px] text-retro-muted` fixed width
+
+```typescript
+export interface StatBarProps {
+  label: string;
+  value: number;  // 0-100
+}
+```
+
+- Client component (uses `useScrollReveal` for trigger)
+- Label: `font-pixel text-[10px] text-retro-muted` fixed width (`w-24`)
 - Bar: `h-3 bg-retro-brown/30` container, inner `bg-retro-amber` fill
-- Fill animates from 0 to value% on scroll reveal (CSS transition, `transition-all duration-1000`)
+- Fill animates from 0% to value% width on scroll reveal (CSS `transition-all duration-1000`)
+- The **numeric value displays immediately** (no animated counter) — only the visual bar fill animates
 - Value number: `font-mono text-xs text-retro-amber` right-aligned
+- `prefers-reduced-motion`: bar displays at full width immediately, no transition
+- ASCII art in this spec (████░░) is illustrative — actual render is CSS-based bars
 
 **Remove from home page:**
 - PixelParticles canvas background (noise, performance cost — contradicts CLAUDE.md "no noisy components")
 - TechGrid section with emoji icons (replaced by stats in hero)
+- "SCROLL DOWN" bounce indicator (noisy, uses ▼ symbol)
 - Featured projects section stays but uses new QuestCard component
 
 **Home page structure:**
@@ -158,14 +182,17 @@ QUEST LOG                                09 QUESTS
 
 **Difficulty display helper:**
 ```typescript
-function renderDifficulty(level: 1|2|3|4|5): string {
+function renderDifficulty(level: DifficultyLevel): string {
   return "■".repeat(level) + "□".repeat(5 - level);
 }
 ```
 
+**QuestCard is a client component** (uses `useScrollReveal` for scroll-triggered animation, same as current ProjectCard).
+
 **FilterTabs** — keep existing but rename labels:
 - "ALL QUESTS", "C# / .NET", "TYPESCRIPT", "JAVA"
 - Section header: "QUEST LOG" instead of "ALL PROJECTS"
+- Count display retained: `09 QUESTS` format in header
 
 ---
 
@@ -229,6 +256,49 @@ OTHER      Java  ·  Spring Boot  ·  WPF  ·  MySQL
 
 ---
 
+## Section 4b: Quest Detail Page
+
+**File:** `src/app/projects/[slug]/page.tsx`
+
+```
+QUESTS / LANGFENS MICROSERVICE
+──────────────────────────────────────────────────
+
+QUEST 01
+
+LANGFENS MICROSERVICE
+Full-stack Developer
+
+DIFFICULTY ■■■■■
+
+[ VIEW SOURCE ]    [ LIVE DEMO ]
+
+── QUEST BRIEFING ─────────────────────────
+A microservices-based system built with .NET...
+
+── XP GAINED ──────────────────────────────
+.NET  ·  C#  ·  Docker  ·  RabbitMQ  ·  SQL Server
+
+── CLASS ROLE ─────────────────────────────
+Full-stack Developer
+
+← PREVIOUS QUEST                    NEXT QUEST →
+```
+
+**Changes from current:**
+- Breadcrumb: "QUESTS / {project.name}" instead of "PROJECTS / {project.name}"
+- Section headings renamed:
+  - "OVERVIEW" → "QUEST BRIEFING"
+  - "TECH USED" → "XP GAINED"
+  - "ROLE" → "CLASS ROLE"
+- Add difficulty display: `DIFFICULTY ■■■■□`
+- Quest number displayed: `QUEST {order}` above the name
+- Prev/next links: "PREVIOUS QUEST" / "NEXT QUEST"
+- GitHub link: "VIEW SOURCE" (already text-based)
+- Page metadata title: unchanged (keep project name for SEO)
+
+---
+
 ## Section 5: Contact Page — New Quest
 
 **File:** `src/app/contact/page.tsx`, `src/components/ContactForm.tsx`, `src/components/SocialLinks.tsx`
@@ -256,12 +326,15 @@ QUEST DETAILS                    CONNECT
 
 **Changes:**
 - Heading: "START A NEW QUEST" instead of "GET IN TOUCH"
-- Form labels: "YOUR NAME", "YOUR EMAIL", "QUEST DESCRIPTION"
-- Submit button: "SEND QUEST REQUEST"
+- Form labels: "YOUR NAME", "YOUR EMAIL", "QUEST DESCRIPTION" (was "MESSAGE")
+- Submit button: "SEND QUEST REQUEST" (remove ▶ Unicode arrow)
 - Success message: "QUEST REQUEST SENT. I'LL RESPOND SOON."
+- "Send another" action: "START ANOTHER QUEST"
+- Sending state: "SENDING QUEST REQUEST..."
+- Error state: "QUEST FAILED. TRY AGAIN."
 
 **SocialLinks redesign:**
-- Remove all emoji icons
+- Remove all emoji icons (currently uses octopus, briefcase, envelope, book emoji)
 - Each link is a text block: platform name (`font-pixel text-[10px]`) + URL/value (`font-mono text-xs`)
 - Simple border card, no icon decoration
 
@@ -272,14 +345,22 @@ QUEST DETAILS                    CONNECT
 ### Nav (`src/components/Nav.tsx`)
 
 - Logo/brand: "TMK" or "TU MINH KHOA" — `font-pixel text-[11px]`
-- Nav links: rename "PROJECTS" → "QUESTS", "ABOUT" → "CHARACTER", "CONTACT" → "NEW QUEST"
+- Nav links renamed: "PROJECTS" → "QUESTS", "ABOUT" → "CHARACTER", "CONTACT" → "NEW QUEST"
+  - Note: nav says "CHARACTER" (short for nav), page heading says "CHARACTER SHEET" (full title) — intentional difference for space
 - Mobile menu toggle: use text "MENU" / "CLOSE" instead of ≡/✕ symbols
+  - Touch target: `px-3 py-2` min — wider than single-char toggle, but "MENU" is still short enough
 - Footer social links: "GH" / "LI" text abbreviations (already correct, no emoji)
 
 ### Footer (`src/components/Footer.tsx`)
 
 - Keep minimal: copyright + text social links
 - No changes needed (already text-only)
+
+### 404 Page (`src/app/not-found.tsx`)
+
+- Heading: "QUEST NOT FOUND" instead of current error text
+- Sub-text: "THE PATH YOU SEEK DOES NOT EXIST."
+- Button: "RETURN TO BASE" links to home
 
 ### Template transitions (`src/app/template.tsx`)
 
@@ -298,8 +379,8 @@ QUEST DETAILS                    CONNECT
 | Component | Changes |
 |-----------|---------|
 | `Hero.tsx` | Full rewrite — character intro with stats, remove location emoji |
-| `ProjectCard.tsx` → `QuestCard.tsx` | Rename + add difficulty/status/XP layout |
-| `ProjectsGrid.tsx` → `QuestLog.tsx` | Rename + RPG terminology |
+| `ProjectCard.tsx` → `QuestCard.tsx` | Create new file, delete old. Data changes (add `difficulty`) must happen first. Client component. |
+| `ProjectsGrid.tsx` → `QuestLog.tsx` | Create new file, delete old. Client component. |
 | `TechGrid.tsx` | Remove entirely (replaced by stats in Hero + abilities in About) |
 | `SocialLinks.tsx` | Remove emoji icons, text-only layout |
 | `ContactForm.tsx` | RPG labels, remove Unicode arrow |
@@ -334,8 +415,9 @@ QUEST DETAILS                    CONNECT
 ### `profile.ts`
 - Add `level: 3` field
 - Add `stats: CharacterStat[]` array (4 stats)
+- Remove `avatar?: string` field (intentionally dropped — RPG layout uses text-only, no avatar image)
 - Expand `bio` to 3-4 sentences
-- Add `description` to each experience entry
+- `ExperienceEntry.description` already exists — ensure values are meaningful (current values are fine)
 
 ### `projects.ts`
 - Add `difficulty: 1-5` to Project interface
@@ -366,10 +448,17 @@ The RPG theme is purely **presentational** — terminology and layout inspired b
 
 ---
 
-## Section 10: Accessibility & Performance
+## Section 10: CLAUDE.md Compliance Notes
+
+- **Labeled dividers** (e.g., "── STATS ──") are implemented as: `<h3 className="font-pixel">` + `<div className="flex-1 h-px bg-gradient-to-r">` — same pattern already used throughout the codebase. CLAUDE.md prohibits "decorative dividers with icons" — these are text-labeled dividers, which are compliant.
+- **Stat bar animation** is a visual bar fill, NOT an animated counter. The numeric value (e.g., "90") renders immediately. Only the CSS width transitions. This complies with "no animated counters or number tickers."
+- **No rounded corners** — all new components use sharp edges.
+- **No new dependencies** — all effects are CSS transitions + existing Tailwind/Framer Motion.
+
+## Section 11: Accessibility & Performance
 
 - All stat bars have text values alongside visual bars (screen reader friendly)
 - Difficulty blocks (■□) are decorative — actual value conveyed by adjacent text
-- `prefers-reduced-motion` disables stat bar animations
+- `prefers-reduced-motion` disables stat bar animations (bar renders at full width)
 - Removing PixelParticles improves performance (was a canvas animation)
 - No new dependencies — all effects are CSS-only
