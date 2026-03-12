@@ -47,9 +47,10 @@ export default function Nav() {
             })}
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
-            <a href="https://github.com/minkhoaa" target="_blank" rel="noopener noreferrer" className="text-retro-muted hover:text-retro-amber text-sm font-mono transition-colors">GH</a>
-            <a href="#" className="text-retro-muted hover:text-retro-amber text-sm font-mono transition-colors">LI</a>
+          <div className="hidden md:flex items-center gap-4">
+            <a href="https://github.com/minkhoaa" target="_blank" rel="noopener noreferrer" className="text-retro-muted hover:text-retro-amber text-xs font-mono tracking-wider transition-colors">GH</a>
+            <span className="text-retro-brown/30">·</span>
+            <a href="https://linkedin.com/in/min-khoaa" target="_blank" rel="noopener noreferrer" className="text-retro-muted hover:text-retro-amber text-xs font-mono tracking-wider transition-colors">LI</a>
           </div>
 
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-retro-amber font-pixel text-[10px] px-3 py-2" aria-label="Toggle menu" aria-expanded={menuOpen}>
