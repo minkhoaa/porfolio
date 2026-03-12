@@ -42,12 +42,13 @@ export const profile: Profile = {
   socials: [
     { platform: "github", url: "https://github.com/minkhoaa", label: "github.com/minkhoaa" },
     { platform: "linkedin", url: "https://linkedin.com/in/min-khoaa", label: "linkedin.com/in/min-khoaa" },
-    { platform: "email", url: "mailto:placeholder@email.com", label: "placeholder@email.com" },
+    { platform: "email", url: "mailto:tukhoa040505@gmail.com", label: "tukhoa040505@gmail.com" },
     { platform: "facebook", url: "https://facebook.com/min.khoaaa", label: "facebook.com/min.khoaaa" },
   ],
   experience: [
+    { dateRange: "Mar 2025 — Present", title: "Fullstack Developer & DevOps Intern — Morca Labs", description: "Internship handling full-stack development and DevOps engineering. Building web applications and managing CI/CD pipelines, containerized deployments, and infrastructure.", current: true },
     { dateRange: "Mar 2025 — Present", title: "Fullstack Developer (Part-time) — TISOHA Software Solutions", description: "Building and maintaining full-stack web applications with Next.js, TypeScript, and .NET. Responsible for end-to-end feature development, from UI implementation to API design and database integration.", current: true },
-    { dateRange: "Dec 2024 — Feb 2025", title: "Fullstack Developer Intern — TISOHA Software Solutions", description: "Built PeerZee — a full-stack TypeScript application using Next.js, React, and Tailwind CSS. Handled both frontend UI development and backend API integration with server-side rendering and type-safe architecture.", current: false },
+    { dateRange: "Dec 2024 — Feb 2025", title: "Fullstack Developer Intern — TISOHA Software Solutions", description: "Built PeerZee — a full-stack social discovery platform using Next.js, NestJS, PostgreSQL, and Redis. Implemented AI matchmaking with pgvector, real-time chat via Socket.IO, and WebRTC video dating rooms.", current: false },
     { dateRange: "Aug 2023", title: "Started Coding", description: "Began programming journey with C# and .NET framework.", current: false },
   ],
   skills: [

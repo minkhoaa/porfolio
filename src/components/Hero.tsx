@@ -27,7 +27,7 @@ export default function Hero() {
 
         {/* Social links */}
         <div className="mt-6 flex gap-4">
-          {profile.socials.filter(s => s.url !== "mailto:placeholder@email.com").map((social) => (
+          {profile.socials.map((social) => (
             <a
               key={social.platform}
               href={social.url}
