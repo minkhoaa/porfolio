@@ -34,7 +34,7 @@ export interface Profile {
 
 export const profile: Profile = {
   name: "TU MINH KHOA",
-  role: "Software Engineering Student · .NET Backend Developer",
+  role: "Software Engineering Student · Fullstack Developer",
   level: 3,
   bio: "I build backend systems with a focus on microservices, system architecture, and clean service design. I work primarily with C# and .NET, and occasionally with NestJS and Java.",
   location: "Ho Chi Minh City, Viet Nam",
@@ -46,7 +46,8 @@ export const profile: Profile = {
     { platform: "facebook", url: "https://facebook.com/min.khoaaa", label: "facebook.com/min.khoaaa" },
   ],
   experience: [
-    { dateRange: "2023 — Present", title: "Backend Developer", description: "Building scalable .NET backend systems and microservices architecture.", current: true },
+    { dateRange: "Mar 2025 — Present", title: "Fullstack Developer (Part-time) — TISOHA Software Solutions", description: "Continuing as a part-time fullstack developer, building end-to-end web applications.", current: true },
+    { dateRange: "Dec 2024 — Feb 2025", title: "Fullstack Developer Intern — TISOHA Software Solutions", description: "Internship developing full-stack features across frontend and backend systems.", current: false },
     { dateRange: "Aug 2023", title: "Started Coding", description: "Began programming journey with C# and .NET framework.", current: false },
   ],
   skills: [

@@ -18,11 +18,11 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KHOA.DEV — .NET Backend Developer",
-  description: "Tu Minh Khoa — .NET Backend Developer based in Ho Chi Minh City. Building scalable backend systems and microservices.",
+  title: "KHOA.DEV — Fullstack Developer",
+  description: "Tu Minh Khoa — Fullstack Developer based in Ho Chi Minh City. Building scalable systems and web applications.",
   openGraph: {
-    title: "KHOA.DEV — .NET Backend Developer",
-    description: "Tu Minh Khoa — .NET Backend Developer. Microservices, C#, TypeScript.",
+    title: "KHOA.DEV — Fullstack Developer",
+    description: "Tu Minh Khoa — Fullstack Developer. C#, .NET, TypeScript, React.",
     type: "website",
   },
 };
