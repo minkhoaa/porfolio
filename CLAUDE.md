@@ -15,7 +15,7 @@ npx tsc --noEmit     # Type check (no output)
 - **Styling:** Tailwind CSS v4 (CSS-first `@theme` in `globals.css`)
 - **Animations:** Framer Motion + CSS keyframes
 - **React Compiler:** Enabled via `babel-plugin-react-compiler`
-- **Fonts:** Press Start 2P (headings) + JetBrains Mono (body)
+- **Fonts:** Pixelify Sans (headings) + JetBrains Mono (body)
 - **Data:** Static TypeScript files (`src/data/projects.ts`, `src/data/profile.ts`)
 - **Routing:** App Router with `generateStaticParams()` for dynamic routes
 
@@ -56,7 +56,7 @@ All colors are defined as Tailwind v4 `@theme` tokens in `globals.css`:
 
 ### Typography Rules
 
-- **Pixel font (`font-pixel`):** Headings, labels, buttons. Min size: `text-[10px]`
+- **Pixel font (`font-pixel`):** Headings, labels, buttons. Min size: `text-xs` (12px)
 - **Mono font (`font-mono`):** Body text, descriptions, code. Min size: `text-xs` (12px)
 - Never use default sans-serif. Every text element must use `font-pixel` or `font-mono`.
 
@@ -131,6 +131,8 @@ All colors are defined as Tailwind v4 `@theme` tokens in `globals.css`:
 - `GlitchText` — Random character replacement effect.
 - `PixelParticles` — Canvas-based particle system (hero background only).
 - `ParallaxGrid` — CSS grid with scroll-linked parallax.
+- `PixelSprites` — CSS box-shadow pixel art characters (warrior, mage) with walk animations.
+- `PageBackground` — Per-page themed background (overworld, dungeon, tavern, questboard).
 
 **Rules for effects:**
 - Never call `setState` synchronously inside `useEffect` — wrap in `requestAnimationFrame` or use refs.
