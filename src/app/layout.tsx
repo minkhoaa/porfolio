@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { JetBrains_Mono, Press_Start_2P } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ParallaxGrid from "@/components/effects/ParallaxGrid";
 
 const fontPixel = Press_Start_2P({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${fontPixel.variable} ${fontMono.variable} font-mono bg-retro-dark text-retro-tan bg-pixel-grid scanlines`}>
+        <ParallaxGrid />
         <Nav />
         <main className="min-h-screen pt-14">
           {children}

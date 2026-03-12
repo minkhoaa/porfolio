@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             {profile.socials.map((social) => (
               <a key={social.platform} href={social.url} target={social.platform !== "email" ? "_blank" : undefined} rel="noopener noreferrer" className="font-mono text-[10px] text-retro-muted hover:text-retro-amber transition-colors">
-                {social.platform.toUpperCase().slice(0, 2)}
+                {{ github: "GH", linkedin: "LI", email: "EM", facebook: "FB" }[social.platform]}
               </a>
             ))}
           </div>

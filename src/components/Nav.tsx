@@ -52,7 +52,7 @@ export default function Nav() {
             <a href="#" className="text-retro-muted hover:text-retro-amber text-xs font-mono transition-colors">LI</a>
           </div>
 
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-retro-amber font-pixel text-xs p-2" aria-label="Toggle menu">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-retro-amber font-pixel text-xs p-2" aria-label="Toggle menu" aria-expanded={menuOpen}>
             {menuOpen ? "✕" : "≡"}
           </button>
         </div>
