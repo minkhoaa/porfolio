@@ -1,8 +1,8 @@
-
 import "./globals.css";
 import { Metadata } from "next";
 import { JetBrains_Mono, Press_Start_2P } from "next/font/google";
-
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 const fontPixel = Press_Start_2P({
   subsets: ["latin"],
@@ -13,25 +13,28 @@ const fontPixel = Press_Start_2P({
 const fontMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: "400",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "Dev_Console :: Portfolio",
-  description: "Backend & Systems Developer Portfolio",
+  title: "KHOA.DEV — .NET Backend Developer",
+  description: "Tu Minh Khoa — .NET Backend Developer based in Ho Chi Minh City. Building scalable backend systems and microservices.",
+  openGraph: {
+    title: "KHOA.DEV — .NET Backend Developer",
+    description: "Tu Minh Khoa — .NET Backend Developer. Microservices, C#, TypeScript.",
+    type: "website",
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${fontPixel.variable} ${fontMono.variable} antialiased text-green-400`}>
-        <main className="min-h-screen p-4 md:p-8 font-mono selection:bg-green-400 selection:text-black">
+      <body className={`${fontPixel.variable} ${fontMono.variable} font-mono bg-retro-dark text-retro-tan bg-pixel-grid scanlines`}>
+        <Nav />
+        <main className="min-h-screen pt-14">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );
