@@ -64,10 +64,11 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="font-mono text-[10px] text-retro-muted block mb-1">
+        <label htmlFor="contact-name" className="font-mono text-[10px] text-retro-muted block mb-1">
           &gt; NAME
         </label>
         <input
+          id="contact-name"
           name="name"
           required
           className="w-full border border-retro-brown/30 bg-retro-card/30 px-3 py-2 font-mono text-xs text-retro-tan focus:border-retro-amber focus:outline-none transition-colors placeholder:text-retro-brown/30"
@@ -76,10 +77,11 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="font-mono text-[10px] text-retro-muted block mb-1">
+        <label htmlFor="contact-email" className="font-mono text-[10px] text-retro-muted block mb-1">
           &gt; EMAIL
         </label>
         <input
+          id="contact-email"
           name="email"
           type="email"
           required
@@ -89,10 +91,11 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="font-mono text-[10px] text-retro-muted block mb-1">
+        <label htmlFor="contact-message" className="font-mono text-[10px] text-retro-muted block mb-1">
           &gt; MESSAGE
         </label>
         <textarea
+          id="contact-message"
           name="message"
           required
           rows={5}
