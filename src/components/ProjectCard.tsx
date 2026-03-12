@@ -15,20 +15,19 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <div ref={ref} style={{ animationDelay: `${index * 100}ms` }} className={isVisible ? "animate-fade-in-up" : "opacity-0"}>
-      <Link href={`/projects/${project.slug}`} className="block border border-retro-brown/25 bg-retro-card/30 hover:border-retro-amber/50 hover:shadow-[0_0_15px_rgba(167,139,250,0.1)] transition-all group">
-        <div className="h-32 bg-gradient-to-br from-retro-card to-retro-dark/50 flex items-center justify-center border-b border-retro-brown/15">
-          <span className="font-pixel text-[10px] text-retro-brown/30">SCREENSHOT</span>
-        </div>
-        <div className="p-4">
-          <div className="flex items-center justify-between">
-            <span className="font-pixel text-[10px] text-retro-amber group-hover:animate-[number-glitch_0.3s]">{number}</span>
-            <span className="font-mono text-[10px] text-retro-brown">{project.tech[0]}</span>
+      <Link href={`/projects/${project.slug}`} className="block border border-retro-brown/25 bg-retro-card/30 hover:border-retro-amber/50 hover:shadow-[0_0_20px_rgba(167,139,250,0.15)] transition-all group">
+        <div className="relative h-36 bg-gradient-to-br from-retro-card to-retro-dark/50 flex items-end border-b border-retro-brown/15 overflow-hidden">
+          <span className="absolute top-3 right-4 font-pixel text-4xl text-retro-amber/10 group-hover:text-retro-amber/20 transition-colors">{number}</span>
+          <div className="p-5 pb-4 w-full">
+            <span className="font-mono text-xs text-retro-amber/70 tracking-wider">{project.tech[0]}</span>
+            <h3 className="font-pixel text-base sm:text-lg text-retro-tan mt-1 leading-relaxed group-hover:text-retro-amber transition-colors">{project.shortName}</h3>
           </div>
-          <h3 className="font-pixel text-[12px] text-retro-tan mt-2 leading-relaxed">{project.shortName}</h3>
-          <p className="font-mono text-[13px] text-retro-muted/60 mt-2 line-clamp-2">{project.description}</p>
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {project.tech.slice(0, 3).map((t) => (
-              <span key={t} className="font-mono text-[10px] text-retro-brown border border-retro-brown/30 px-1.5 py-0.5">{t}</span>
+        </div>
+        <div className="p-5 pt-4">
+          <p className="font-mono text-sm text-retro-muted/70 leading-relaxed line-clamp-2">{project.description}</p>
+          <div className="flex flex-wrap gap-2 mt-4">
+            {project.tech.slice(0, 4).map((t) => (
+              <span key={t} className="font-mono text-xs text-retro-amber/80 border border-retro-amber/25 bg-retro-amber/5 px-2.5 py-1">{t}</span>
             ))}
           </div>
         </div>

@@ -18,17 +18,17 @@ export default function TechGrid() {
 
   return (
     <div ref={ref}>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {techItems.map((item, i) => (
           <div
             key={item.label}
             style={{ animationDelay: `${i * 80}ms` }}
-            className={`border border-retro-brown/20 bg-retro-card/20 p-4 text-center hover:border-retro-amber/40 hover:shadow-[0_0_10px_rgba(167,139,250,0.08)] transition-all ${
+            className={`border border-retro-brown/20 bg-retro-card/20 p-5 text-center hover:border-retro-amber/40 hover:shadow-[0_0_10px_rgba(167,139,250,0.08)] transition-all ${
               isVisible ? "animate-fade-in-up" : "opacity-0"
             }`}
           >
-            <div className="text-2xl">{item.icon}</div>
-            <div className="font-pixel text-[10px] text-retro-tan mt-2">{item.label}</div>
+            <div className="text-3xl">{item.icon}</div>
+            <div className="font-pixel text-xs text-retro-tan mt-3">{item.label}</div>
           </div>
         ))}
       </div>

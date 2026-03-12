@@ -25,7 +25,7 @@ export default function Home() {
           ))}
         </div>
         <div className="text-center mt-10">
-          <Link href="/projects" className="font-mono text-sm text-retro-amber border-b border-dashed border-retro-amber/30 hover:border-retro-amber transition-colors">
+          <Link href="/projects" className="inline-block border-2 border-retro-amber px-8 py-3 font-pixel text-[11px] text-retro-amber bg-retro-amber/5 hover:bg-retro-amber/15 transition-all hover:shadow-[0_0_20px_rgba(167,139,250,0.2)]">
             VIEW ALL PROJECTS →
           </Link>
         </div>
