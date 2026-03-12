@@ -45,7 +45,7 @@ export default function ContactForm() {
   if (state === "success") {
     return (
       <div className="border border-green-500/30 bg-green-500/5 p-6 text-center">
-        <p className="font-pixel text-[9px] text-green-500">
+        <p className="font-pixel text-[11px] text-green-500">
           MESSAGE SENT SUCCESSFULLY
         </p>
         <p className="font-mono text-xs text-retro-muted mt-2">
@@ -111,7 +111,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={state === "sending"}
-        className="w-full border-2 border-retro-amber px-6 py-3 font-pixel text-[9px] text-retro-amber bg-retro-amber/5 hover:bg-retro-amber/15 transition-all hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full border-2 border-retro-amber px-6 py-3 font-pixel text-[11px] text-retro-amber bg-retro-amber/5 hover:bg-retro-amber/15 transition-all hover:shadow-[0_0_20px_rgba(167,139,250,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {state === "sending" ? "SENDING..." : "SEND_MESSAGE.exe \u25B6"}
       </button>

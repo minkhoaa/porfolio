@@ -23,12 +23,12 @@ export default function TechGrid() {
           <div
             key={item.label}
             style={{ animationDelay: `${i * 80}ms` }}
-            className={`border border-retro-brown/20 bg-retro-card/20 p-4 text-center hover:border-retro-amber/40 hover:shadow-[0_0_10px_rgba(251,191,36,0.08)] transition-all ${
+            className={`border border-retro-brown/20 bg-retro-card/20 p-4 text-center hover:border-retro-amber/40 hover:shadow-[0_0_10px_rgba(167,139,250,0.08)] transition-all ${
               isVisible ? "animate-fade-in-up" : "opacity-0"
             }`}
           >
             <div className="text-2xl">{item.icon}</div>
-            <div className="font-pixel text-[7px] text-retro-tan mt-2">{item.label}</div>
+            <div className="font-pixel text-[10px] text-retro-tan mt-2">{item.label}</div>
           </div>
         ))}
       </div>

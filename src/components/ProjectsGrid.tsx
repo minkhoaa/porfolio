@@ -21,7 +21,7 @@ export default function ProjectsGrid() {
   return (
     <>
       <div className="flex items-center gap-3 mb-6">
-        <h2 className="font-pixel text-base text-retro-amber">ALL PROJECTS</h2>
+        <h2 className="font-pixel text-lg text-retro-amber">ALL PROJECTS</h2>
         <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
         <span className="font-mono text-xs text-retro-brown">
           {String(filtered.length).padStart(2, "0")} ITEMS

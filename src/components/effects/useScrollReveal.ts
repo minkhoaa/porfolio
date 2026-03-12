@@ -16,10 +16,23 @@ export function useScrollReveal(threshold = 0.1) {
           observer.unobserve(el);
         }
       },
-      { threshold }
+      { threshold, rootMargin: "0px 0px -50px 0px" }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Elements already in viewport on page load may not trigger the observer
+    const rafId = requestAnimationFrame(() => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        setIsVisible(true);
+        observer.unobserve(el);
+      }
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      observer.disconnect();
+    };
   }, [threshold]);
 
   return { ref, isVisible };

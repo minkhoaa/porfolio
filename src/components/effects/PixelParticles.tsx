@@ -43,7 +43,7 @@ export default function PixelParticles({ count = 30 }: PixelParticlesProps) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (const p of particles) {
-        ctx.fillStyle = `rgba(251, 191, 36, ${p.opacity})`;
+        ctx.fillStyle = `rgba(167, 139, 250, ${p.opacity})`;
         ctx.fillRect(
           Math.floor(p.x),
           Math.floor(p.y),

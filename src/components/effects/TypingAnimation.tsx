@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface TypingAnimationProps {
   text: string;
@@ -11,18 +11,24 @@ interface TypingAnimationProps {
 export default function TypingAnimation({ text, speed = 80, className = "" }: TypingAnimationProps) {
   const [displayedText, setDisplayedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
+  const indexRef = useRef(0);
 
   useEffect(() => {
-    let index = 0;
+    indexRef.current = 0;
+
     const timer = setInterval(() => {
-      if (index < text.length) {
-        setDisplayedText(text.slice(0, index + 1));
-        index++;
+      if (indexRef.current < text.length) {
+        indexRef.current += 1;
+        setDisplayedText(text.slice(0, indexRef.current));
       } else {
         clearInterval(timer);
       }
     }, speed);
-    return () => clearInterval(timer);
+
+    return () => {
+      clearInterval(timer);
+      indexRef.current = 0;
+    };
   }, [text, speed]);
 
   useEffect(() => {

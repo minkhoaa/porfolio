@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-retro-amber: #fbbf24;
-  --color-retro-orange: #d97706;
-  --color-retro-brown: #92400e;
-  --color-retro-tan: #d4a574;
-  --color-retro-muted: #a8854a;
-  --color-retro-dark: #0f0a07;
-  --color-retro-card: #1c1008;
+  --color-retro-amber: #a78bfa;
+  --color-retro-orange: #8b5cf6;
+  --color-retro-brown: #4c4472;
+  --color-retro-tan: #e2e8f0;
+  --color-retro-muted: #94a3b8;
+  --color-retro-dark: #0d0b14;
+  --color-retro-card: #141024;
   --color-green: #22c55e;
 
   --font-family-pixel: var(--font-pixel);
@@ -29,8 +29,8 @@
 }
 
 .bg-pixel-grid {
-  background-image: linear-gradient(to right, rgba(146, 64, 14, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(146, 64, 14, 0.07) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(139, 92, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(139, 92, 246, 0.07) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -38,7 +38,7 @@
   content: "";
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 92, 246, 0.03) 2px, rgba(139, 92, 246, 0.03) 4px);
   pointer-events: none;
   z-index: 50;
 }
@@ -52,8 +52,8 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); }
-  50% { box-shadow: 0 0 0 6px rgba(251, 191, 36, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(167, 139, 250, 0); }
 }
 
 @keyframes fade-in-up {

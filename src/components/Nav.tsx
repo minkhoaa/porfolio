@@ -23,7 +23,7 @@ export default function Nav() {
             <div className="w-6 h-6 bg-retro-amber flex items-center justify-center">
               <span className="font-pixel text-[10px] text-retro-dark">K</span>
             </div>
-            <span className="font-pixel text-[9px] text-retro-amber group-hover:text-retro-orange transition-colors">
+            <span className="font-pixel text-[11px] text-retro-amber group-hover:text-retro-orange transition-colors">
               KHOA.DEV
             </span>
           </Link>
@@ -35,7 +35,7 @@ export default function Nav() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`font-mono text-xs transition-colors ${
+                  className={`font-mono text-sm transition-colors ${
                     isActive
                       ? "text-retro-amber border-b-2 border-retro-amber pb-0.5"
                       : "text-retro-muted hover:text-retro-amber"
@@ -48,8 +48,8 @@ export default function Nav() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <a href="https://github.com/minkhoaa" target="_blank" rel="noopener noreferrer" className="text-retro-muted hover:text-retro-amber text-xs font-mono transition-colors">GH</a>
-            <a href="#" className="text-retro-muted hover:text-retro-amber text-xs font-mono transition-colors">LI</a>
+            <a href="https://github.com/minkhoaa" target="_blank" rel="noopener noreferrer" className="text-retro-muted hover:text-retro-amber text-sm font-mono transition-colors">GH</a>
+            <a href="#" className="text-retro-muted hover:text-retro-amber text-sm font-mono transition-colors">LI</a>
           </div>
 
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-retro-amber font-pixel text-xs p-2" aria-label="Toggle menu" aria-expanded={menuOpen}>

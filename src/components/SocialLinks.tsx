@@ -24,7 +24,7 @@ export default function SocialLinks({ links }: SocialLinksProps) {
         >
           <span className="text-lg">{icons[link.platform]}</span>
           <div>
-            <p className="font-pixel text-[7px] text-retro-tan group-hover:text-retro-amber transition-colors">
+            <p className="font-pixel text-[10px] text-retro-tan group-hover:text-retro-amber transition-colors">
               {link.platform.toUpperCase()}
             </p>
             <p className="font-mono text-[10px] text-retro-brown">

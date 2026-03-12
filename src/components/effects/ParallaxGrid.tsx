@@ -20,7 +20,7 @@ export default function ParallaxGrid() {
       ref={gridRef}
       className="fixed inset-0 pointer-events-none z-0"
       style={{
-        backgroundImage: "linear-gradient(to right, rgba(146,64,14,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(146,64,14,0.05) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(to right, rgba(139,92,246,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(139,92,246,0.05) 1px, transparent 1px)",
         backgroundSize: "20px 20px",
         willChange: "transform",
       }}

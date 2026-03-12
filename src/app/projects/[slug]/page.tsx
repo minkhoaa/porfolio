@@ -41,7 +41,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
         <div>
-          <h1 className="font-pixel text-lg sm:text-xl text-retro-amber leading-relaxed">{project.name}</h1>
+          <h1 className="font-pixel text-xl sm:text-2xl text-retro-amber leading-relaxed">{project.name}</h1>
           <p className="font-mono text-sm text-retro-orange mt-2">{project.description}</p>
         </div>
         <div className="flex gap-2 shrink-0">
@@ -58,17 +58,17 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
         <div>
-          <h2 className="font-pixel text-[8px] text-retro-orange mb-3">OVERVIEW</h2>
+          <h2 className="font-pixel text-[11px] text-retro-orange mb-3">OVERVIEW</h2>
           <p className="font-mono text-xs text-retro-muted leading-relaxed">{project.overview}</p>
         </div>
         <div>
-          <h2 className="font-pixel text-[8px] text-retro-orange mb-3">TECH USED</h2>
+          <h2 className="font-pixel text-[11px] text-retro-orange mb-3">TECH USED</h2>
           <div className="flex flex-wrap gap-2">
             {project.tech.map((t) => (
               <span key={t} className="font-mono text-[10px] text-retro-amber border border-retro-amber/30 px-2 py-0.5">{t}</span>
             ))}
           </div>
-          <h2 className="font-pixel text-[8px] text-retro-orange mt-6 mb-3">ROLE</h2>
+          <h2 className="font-pixel text-[11px] text-retro-orange mt-6 mb-3">ROLE</h2>
           <p className="font-mono text-xs text-retro-muted">{project.role}</p>
         </div>
       </div>

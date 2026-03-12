@@ -13,7 +13,7 @@ export default function Home() {
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="flex items-center gap-3 mb-10">
-          <h2 className="font-pixel text-sm text-retro-amber">FEATURED PROJECTS</h2>
+          <h2 className="font-pixel text-lg text-retro-amber">FEATURED PROJECTS</h2>
           <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
           <span className="font-mono text-xs text-retro-brown">
             {String(featured.length).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
@@ -33,7 +33,7 @@ export default function Home() {
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="flex items-center gap-3 mb-10">
-          <h2 className="font-pixel text-sm text-retro-amber">TECH STACK</h2>
+          <h2 className="font-pixel text-lg text-retro-amber">TECH STACK</h2>
           <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
         </div>
         <TechGrid />
