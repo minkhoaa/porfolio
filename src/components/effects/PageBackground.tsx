@@ -74,7 +74,7 @@ function Overworld() {
     <>
       <Stars />
       <PixelGround />
-      <PixelSprites />
+      <PixelSprites theme="overworld" />
     </>
   );
 }
@@ -102,6 +102,7 @@ function Dungeon() {
           }}
         />
       ))}
+      <PixelSprites theme="dungeon" />
     </div>
   );
 }
@@ -126,6 +127,7 @@ function Tavern() {
           }}
         />
       ))}
+      <PixelSprites theme="tavern" />
     </div>
   );
 }
@@ -158,6 +160,7 @@ function QuestBoard() {
           }}
         />
       ))}
+      <PixelSprites theme="questboard" />
     </div>
   );
 }
