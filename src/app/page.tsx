@@ -1,13 +1,15 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import QuestCard from "@/components/QuestCard";
+import PageBackground from "@/components/effects/PageBackground";
 import { getFeaturedProjects, projects } from "@/data/projects";
 
 export default function Home() {
   const featured = getFeaturedProjects();
 
   return (
-    <>
+    <div className="relative">
+      <PageBackground theme="overworld" />
       <Hero />
 
       <div className="section-divider max-w-6xl mx-auto" />
@@ -31,6 +33,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import PageBackground from "@/components/effects/PageBackground";
 import { projects, getProjectBySlug, DifficultyLevel } from "@/data/projects";
 
 interface Props {
@@ -37,8 +38,10 @@ export default async function ProjectDetailPage({ params }: Props) {
   const questNumber = String(project.order).padStart(2, "0");
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-      <div className="font-mono text-xs text-retro-brown mb-8 tracking-wider">
+    <div className="relative">
+      <PageBackground theme="dungeon" />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="font-mono text-xs text-retro-brown mb-8 tracking-wider">
         <Link href="/projects" className="text-retro-muted hover:text-retro-amber transition-colors">QUESTS</Link>
         {" / "}
         <span className="text-retro-amber">{project.shortName}</span>
@@ -95,6 +98,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         {next ? (
           <Link href={`/projects/${next.slug}`} className="font-mono text-xs text-retro-muted hover:text-retro-amber transition-colors duration-200 tracking-wider">NEXT QUEST</Link>
         ) : <div />}
+      </div>
       </div>
     </div>
   );
