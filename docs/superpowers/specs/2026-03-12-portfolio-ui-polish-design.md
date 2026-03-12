@@ -35,15 +35,20 @@ All colors defined as CSS custom properties in `src/app/globals.css` via Tailwin
 | `retro-card` | `#1c1008` | `#141024` | Card/section backgrounds |
 | `green` | `#22c55e` | `#22c55e` | Status indicator (unchanged) |
 
-## 3. CSS Effects Color Updates
+## 3. Effects Color Updates
 
-### Pixel Grid Background (`.bg-pixel-grid`)
-- Change grid line color from `rgba(146,64,14,...)` (brown) to `rgba(139,92,246,...)` (purple)
+**Implementation approach:** Use Tailwind utility classes wherever possible. Only use raw CSS for effects that Tailwind cannot express (keyframe animations, pseudo-element content). Avoid custom CSS classes for layout, spacing, or colors — use Tailwind utilities in JSX instead.
 
-### Scanlines (`.scanlines::after`)
-- Change gradient tint from brown to purple: `rgba(139,92,246,0.03)`
+### Pixel Grid Background
+- Currently a custom `.bg-pixel-grid` class in globals.css with raw CSS `background-image`
+- Keep as custom class (Tailwind cannot express repeating linear-gradient patterns) but update the color from `rgba(146,64,14,...)` (brown) to `rgba(139,92,246,...)` (purple)
+
+### Scanlines
+- Currently a custom `.scanlines::after` pseudo-element in globals.css
+- Keep as custom class (Tailwind cannot express `::after` with repeating gradients) but update tint from brown to purple: `rgba(139,92,246,0.03)`
 
 ### Glitch Keyframes (`@keyframes glitch`)
+- Must remain in globals.css (Tailwind cannot define keyframes)
 - Text-shadow colors use `var(--color-retro-brown)` — will auto-update via token change
 
 ### ParallaxGrid Component
@@ -52,6 +57,7 @@ All colors defined as CSS custom properties in `src/app/globals.css` via Tailwin
 ### Inline Hover Glows (in components)
 - All `rgba(251,191,36,...)` (amber glow) → `rgba(167,139,250,...)` (violet glow)
 - Affects: Hero.tsx, ProjectCard.tsx, ContactForm.tsx, Nav.tsx hover states
+- These are Tailwind arbitrary value classes like `hover:shadow-[0_0_20px_rgba(...)]` — update the rgba values in the class strings
 
 ## 4. Font Size Changes
 
