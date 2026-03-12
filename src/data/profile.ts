@@ -36,7 +36,7 @@ export const profile: Profile = {
   name: "TU MINH KHOA",
   role: "Software Engineering Student · .NET Backend Developer",
   level: 3,
-  bio: "I build backend systems with a focus on microservices, system architecture, and clean service design. I work primarily with C# and .NET, and occasionally with NestJS and Java. My development environment is Linux-native — Arch Linux (CachyOS), Niri WM, Fish shell, and Kitty terminal.",
+  bio: "I build backend systems with a focus on microservices, system architecture, and clean service design. I work primarily with C# and .NET, and occasionally with NestJS and Java.",
   location: "Ho Chi Minh City, Viet Nam",
   available: true,
   socials: [
@@ -52,7 +52,7 @@ export const profile: Profile = {
   skills: [
     { category: "BACKEND", items: ["C#", ".NET", "ASP.NET", "NestJS", "SQL Server"] },
     { category: "FRONTEND", items: ["React", "Next.js", "TypeScript", "Tailwind"] },
-    { category: "TOOLS", items: ["Git", "Docker", "Arch Linux", "Fish", "RabbitMQ"] },
+    { category: "TOOLS", items: ["Git", "Docker", "Linux", "RabbitMQ", "SQL Server"] },
     { category: "OTHER", items: ["Java", "Spring Boot", "WPF", "Microservices"] },
   ],
   stats: [
