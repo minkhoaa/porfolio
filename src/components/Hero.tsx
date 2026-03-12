@@ -3,11 +3,13 @@
 import Link from "next/link";
 import GlitchText from "@/components/effects/GlitchText";
 import TypingAnimation from "@/components/effects/TypingAnimation";
+import PixelParticles from "@/components/effects/PixelParticles";
 import { profile } from "@/data/profile";
 
 export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center relative px-4">
+      <PixelParticles count={25} />
       <div className="text-center max-w-2xl">
         <div className="font-mono text-sm text-retro-brown tracking-widest">
           <TypingAnimation text="> HELLO_WORLD" speed={100} className="text-retro-brown" />
