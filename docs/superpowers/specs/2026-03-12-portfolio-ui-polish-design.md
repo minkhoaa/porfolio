@@ -45,7 +45,7 @@ All colors defined as CSS custom properties in `src/app/globals.css` via Tailwin
 
 ### Scanlines
 - Currently a custom `.scanlines::after` pseudo-element in globals.css
-- Keep as custom class (Tailwind cannot express `::after` with repeating gradients) but update tint from brown to purple: `rgba(139,92,246,0.03)`
+- Keep as custom class (Tailwind cannot express `::after` with repeating gradients) but update tint from `rgba(0,0,0,0.03)` (current black) to `rgba(139,92,246,0.03)` (purple)
 
 ### Glitch Keyframes (`@keyframes glitch`)
 - Must remain in globals.css (Tailwind cannot define keyframes)
@@ -54,10 +54,16 @@ All colors defined as CSS custom properties in `src/app/globals.css` via Tailwin
 ### ParallaxGrid Component
 - Update inline style grid line color from `rgba(146,64,14,0.05)` to `rgba(139,92,246,0.05)`
 
+### Pulse-Dot Keyframe (`@keyframes pulse-dot`)
+- Currently uses `rgba(251, 191, 36, ...)` (amber) for the timeline dot pulse
+- Update to `rgba(167, 139, 250, ...)` (violet) to match new palette
+
 ### Inline Hover Glows (in components)
 - All `rgba(251,191,36,...)` (amber glow) → `rgba(167,139,250,...)` (violet glow)
-- Affects: Hero.tsx, ProjectCard.tsx, ContactForm.tsx, Nav.tsx hover states
+- Affects: Hero.tsx, ProjectCard.tsx, TechGrid.tsx, ContactForm.tsx, Nav.tsx hover states
 - These are Tailwind arbitrary value classes like `hover:shadow-[0_0_20px_rgba(...)]` — update the rgba values in the class strings
+- Note: `GlitchText.tsx` inline textShadow uses `var(--color-retro-brown)` and `var(--color-retro-orange)` CSS variables — these auto-update via token change, no manual edits needed
+- Note: `template.tsx` CRT flash overlay uses `bg-retro-amber/5` — this auto-cascades with the palette change (will become purple flash, which is desired)
 
 ## 4. Font Size Changes
 
@@ -66,9 +72,10 @@ Rule: **No pixel font (Press Start 2P) below 10px. No body text (JetBrains Mono)
 ### Component-by-Component Changes
 
 **Nav.tsx:**
-- Nav links: `text-xs` → `text-sm`
+- Desktop nav links: `text-xs` → `text-sm` (mobile links already `text-sm`, no change)
+- Logo "K" character: `text-[10px]` stays (meets minimum)
 - Logo text "KHOA.DEV": `text-[9px]` → `text-[11px]`
-- Social links: `text-xs` → `text-sm`
+- Desktop social links: `text-xs` → `text-sm`
 
 **Footer.tsx:**
 - Copyright text: `text-[10px]` → `text-xs`
@@ -83,6 +90,7 @@ Rule: **No pixel font (Press Start 2P) below 10px. No body text (JetBrains Mono)
 - Scroll indicator: `text-[10px]` stays (meets minimum)
 
 **ProjectCard.tsx:**
+- Screenshot placeholder text: `text-[7px]` → `text-[10px]`
 - Project number: `text-[8px]` → `text-[10px]`
 - Primary tech label: `text-[10px]` stays
 - Project name (h3): `text-[9px]` → `text-[12px]`
@@ -172,15 +180,7 @@ Rule: **No pixel font (Press Start 2P) below 10px. No body text (JetBrains Mono)
 
 **Fix:** Reset `index` to 0 in the cleanup function so the remount starts fresh. Use a ref for the index to avoid stale closure issues with `setInterval`. The interval should read from `indexRef.current` and update both the ref and state.
 
-### Bug 3: Projects grid 2 columns instead of 3
-
-**File:** `src/components/ProjectsGrid.tsx`
-
-**Problem:** The grid uses `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` but only 2 columns appear on desktop-width screens.
-
-**Fix:** Verify the Tailwind classes are correct. The issue may be that the viewport in testing was below `lg` (1024px). If the grid truly doesn't go to 3 columns at `lg`, check if a parent container is constraining width. Ensure `max-w-6xl` (1152px) allows 3 columns at `lg` breakpoint.
-
-### Bug 4: Page transitions not firing
+### Bug 3: Page transitions not firing
 
 **File:** `src/app/template.tsx`
 
@@ -201,10 +201,10 @@ Rule: **No pixel font (Press Start 2P) below 10px. No body text (JetBrains Mono)
 | `src/components/Footer.tsx` | Font sizes |
 | `src/components/Hero.tsx` | Font sizes + hover glow color |
 | `src/components/ProjectCard.tsx` | Font sizes + hover glow color |
-| `src/components/TechGrid.tsx` | Font sizes |
+| `src/components/TechGrid.tsx` | Font sizes + hover glow color |
 | `src/components/Timeline.tsx` | Font sizes |
 | `src/components/FilterTabs.tsx` | (no changes needed, sizes already ≥10px) |
-| `src/components/ProjectsGrid.tsx` | Font sizes + grid bug verification |
+| `src/components/ProjectsGrid.tsx` | Font sizes |
 | `src/components/ContactForm.tsx` | Font sizes + hover glow color |
 | `src/components/SocialLinks.tsx` | Font sizes |
 | `src/app/page.tsx` | Font sizes |
@@ -223,7 +223,7 @@ After all changes:
 4. Visual verification of all routes:
    - `/` — hero visible with typing + glitch, cards visible below fold, tech grid visible
    - `/about` — profile, timeline dots, skills grid all readable
-   - `/projects` — 3-column grid on desktop, filter works, all 9 cards visible
+   - `/projects` — 3-column grid on desktop (already works at lg breakpoint), filter works, all 9 cards visible
    - `/projects/langfens-microservice` — detail page readable
    - `/contact` — form + social links visible
    - Page transitions fire with CRT flash on navigation
