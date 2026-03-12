@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageBackground from "@/components/effects/PageBackground";
+import FloatingItems from "@/components/effects/FloatingItems";
+import GlassCard from "@/components/effects/GlassCard";
 import { projects, getProjectBySlug, DifficultyLevel } from "@/data/projects";
 
 interface Props {
@@ -40,7 +42,8 @@ export default async function ProjectDetailPage({ params }: Props) {
   return (
     <div className="relative">
       <PageBackground theme="dungeon" />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <FloatingItems theme="dungeon" />
+      <GlassCard className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="font-mono text-xs text-retro-brown mb-8 tracking-wider">
         <Link href="/projects" className="text-retro-muted hover:text-retro-amber transition-colors">QUESTS</Link>
         {" / "}
@@ -99,7 +102,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           <Link href={`/projects/${next.slug}`} className="font-mono text-xs text-retro-muted hover:text-retro-amber transition-colors duration-200 tracking-wider">NEXT QUEST</Link>
         ) : <div />}
       </div>
-      </div>
+      </GlassCard>
     </div>
   );
 }
