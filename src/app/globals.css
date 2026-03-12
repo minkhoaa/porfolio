@@ -145,6 +145,24 @@
   100% { transform: translateX(-40px); }
 }
 
+@keyframes item-bob {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(4deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes particle-pulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.5; box-shadow: 0 0 8px rgba(167,139,250,0.3); }
+}
+
+@keyframes particle-rise {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 0.4; }
+  85% { opacity: 0.3; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
