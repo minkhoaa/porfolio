@@ -1,14 +1,14 @@
 import "./globals.css";
 import { Metadata } from "next";
-import { JetBrains_Mono, Press_Start_2P } from "next/font/google";
+import { JetBrains_Mono, Pixelify_Sans } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ParallaxGrid from "@/components/effects/ParallaxGrid";
 
-const fontPixel = Press_Start_2P({
+const fontPixel = Pixelify_Sans({
   subsets: ["latin"],
   variable: "--font-pixel",
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
 });
 
 const fontMono = JetBrains_Mono({

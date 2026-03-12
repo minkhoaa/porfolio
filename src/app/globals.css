@@ -108,6 +108,43 @@
   66% { opacity: 0.9; content: "??"; }
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes torch-flicker {
+  0% { opacity: 0.6; box-shadow: 0 0 8px rgba(245,158,11,0.5), 0 -4px 4px rgba(239,68,68,0.4); }
+  100% { opacity: 1; box-shadow: 0 0 12px rgba(245,158,11,0.7), 0 -6px 6px rgba(239,68,68,0.5); }
+}
+
+@keyframes drip-fall {
+  0% { transform: translateY(0); opacity: 0.6; }
+  80% { opacity: 0.3; }
+  100% { transform: translateY(200px); opacity: 0; }
+}
+
+@keyframes ember-rise {
+  0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+  50% { transform: translateY(-50vh) translateX(15px); opacity: 0.3; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+@keyframes paper-sway {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+@keyframes sprite-walk-right {
+  0% { transform: translateX(-40px); }
+  100% { transform: translateX(calc(100vw + 40px)); }
+}
+
+@keyframes sprite-walk-left {
+  0% { transform: translateX(calc(100vw + 40px)); }
+  100% { transform: translateX(-40px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
