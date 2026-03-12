@@ -2,6 +2,8 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import QuestCard from "@/components/QuestCard";
 import PageBackground from "@/components/effects/PageBackground";
+import FloatingItems from "@/components/effects/FloatingItems";
+import GlassCard from "@/components/effects/GlassCard";
 import { getFeaturedProjects, projects } from "@/data/projects";
 
 export default function Home() {
@@ -10,11 +12,12 @@ export default function Home() {
   return (
     <div className="relative">
       <PageBackground theme="overworld" />
+      <FloatingItems theme="overworld" />
       <Hero />
 
       <div className="section-divider max-w-6xl mx-auto" />
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <GlassCard className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="flex items-center gap-4 mb-12">
           <h2 className="font-pixel text-2xl font-bold text-retro-amber">FEATURED QUESTS</h2>
           <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
@@ -32,7 +35,7 @@ export default function Home() {
             VIEW QUEST LOG
           </Link>
         </div>
-      </section>
+      </GlassCard>
     </div>
   );
 }
