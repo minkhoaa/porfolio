@@ -15,7 +15,7 @@ export default function SocialLinks({ links }: SocialLinksProps) {
           rel="noopener noreferrer"
           className="border border-retro-brown/20 bg-retro-card/20 p-3 hover:border-retro-amber/40 hover:translate-x-1 transition-all group"
         >
-          <p className="font-pixel text-[10px] text-retro-tan group-hover:text-retro-amber transition-colors">
+          <p className="font-pixel text-sm font-medium text-retro-tan group-hover:text-retro-amber transition-colors">
             {link.platform.toUpperCase()}
           </p>
           <p className="font-mono text-xs text-retro-brown mt-1">

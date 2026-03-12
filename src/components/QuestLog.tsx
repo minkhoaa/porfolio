@@ -21,7 +21,7 @@ export default function QuestLog() {
   return (
     <>
       <div className="flex items-center gap-4 mb-8">
-        <h2 className="font-pixel text-lg text-retro-amber">QUEST LOG</h2>
+        <h2 className="font-pixel text-2xl font-bold text-retro-amber">QUEST LOG</h2>
         <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
         <span className="font-mono text-xs text-retro-brown tracking-wider">
           {String(filtered.length).padStart(2, "0")} QUESTS

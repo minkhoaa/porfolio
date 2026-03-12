@@ -45,7 +45,7 @@ export default function ContactForm() {
   if (state === "success") {
     return (
       <div className="border border-green-500/30 bg-green-500/5 p-6 text-center">
-        <p className="font-pixel text-[11px] text-green-500">
+        <p className="font-pixel text-sm font-semibold text-green-500">
           QUEST REQUEST SENT
         </p>
         <p className="font-mono text-xs text-retro-muted mt-2">
@@ -64,7 +64,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="contact-name" className="font-mono text-[10px] text-retro-muted block mb-1">
+        <label htmlFor="contact-name" className="font-mono text-xs text-retro-muted block mb-1">
           &gt; YOUR NAME
         </label>
         <input
@@ -77,7 +77,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-email" className="font-mono text-[10px] text-retro-muted block mb-1">
+        <label htmlFor="contact-email" className="font-mono text-xs text-retro-muted block mb-1">
           &gt; YOUR EMAIL
         </label>
         <input
@@ -91,7 +91,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="font-mono text-[10px] text-retro-muted block mb-1">
+        <label htmlFor="contact-message" className="font-mono text-xs text-retro-muted block mb-1">
           &gt; QUEST DESCRIPTION
         </label>
         <textarea
@@ -105,13 +105,13 @@ export default function ContactForm() {
       </div>
 
       {state === "error" && (
-        <p className="font-mono text-[10px] text-red-400">{error}</p>
+        <p className="font-mono text-xs text-red-400">{error}</p>
       )}
 
       <button
         type="submit"
         disabled={state === "sending"}
-        className="w-full border-2 border-retro-amber px-6 py-3 font-pixel text-[11px] text-retro-amber bg-retro-amber/5 hover:bg-retro-amber/15 transition-all hover:shadow-[0_0_20px_rgba(167,139,250,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full border-2 border-retro-amber px-6 py-3 font-pixel text-sm font-semibold text-retro-amber bg-retro-amber/5 hover:bg-retro-amber/15 transition-all hover:shadow-[0_0_20px_rgba(167,139,250,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {state === "sending" ? "SENDING QUEST REQUEST..." : "SEND QUEST REQUEST"}
       </button>

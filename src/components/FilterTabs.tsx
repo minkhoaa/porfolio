@@ -24,7 +24,7 @@ export default function FilterTabs({ active, onChange, counts }: FilterTabsProps
         <button
           key={tab.value}
           onClick={() => onChange(tab.value)}
-          className={`font-mono text-[10px] px-3 py-1.5 border transition-all ${
+          className={`font-mono text-xs px-3 py-1.5 border transition-all ${
             active === tab.value
               ? "text-retro-amber border-retro-amber bg-retro-amber/10"
               : "text-retro-brown border-retro-brown/30 hover:border-retro-amber/40 hover:text-retro-muted"

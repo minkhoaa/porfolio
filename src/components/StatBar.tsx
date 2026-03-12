@@ -12,7 +12,7 @@ export default function StatBar({ label, value }: StatBarProps) {
 
   return (
     <div ref={ref} className="flex items-center gap-3">
-      <span className="font-pixel text-[10px] text-retro-muted w-24 shrink-0">{label}</span>
+      <span className="font-pixel text-xs font-medium text-retro-muted w-24 shrink-0">{label}</span>
       <div className="flex-1 h-3 bg-retro-brown/30 overflow-hidden">
         <div
           className="h-full bg-retro-amber transition-all duration-1000 motion-reduce:transition-none"

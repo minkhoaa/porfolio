@@ -21,9 +21,9 @@ export default function Nav() {
         <div className="flex items-center justify-between h-14">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-6 h-6 bg-retro-amber flex items-center justify-center">
-              <span className="font-pixel text-[10px] text-retro-dark">K</span>
+              <span className="font-pixel text-xs font-bold text-retro-dark">K</span>
             </div>
-            <span className="font-pixel text-[11px] text-retro-amber group-hover:text-retro-orange transition-colors">
+            <span className="font-pixel text-sm font-semibold text-retro-amber group-hover:text-retro-orange transition-colors">
               KHOA.DEV
             </span>
           </Link>
@@ -53,7 +53,7 @@ export default function Nav() {
             <a href="https://linkedin.com/in/min-khoaa" target="_blank" rel="noopener noreferrer" className="text-retro-muted hover:text-retro-amber text-xs font-mono tracking-wider transition-colors">LI</a>
           </div>
 
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-retro-amber font-pixel text-[10px] px-3 py-2" aria-label="Toggle menu" aria-expanded={menuOpen}>
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-retro-amber font-pixel text-xs font-medium px-3 py-2" aria-label="Toggle menu" aria-expanded={menuOpen}>
             {menuOpen ? "CLOSE" : "MENU"}
           </button>
         </div>
