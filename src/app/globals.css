@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
-/* Define custom theme for TailwindCSS v4 */
 @theme {
-  /* Custom color palette - Terminal theme */
-  --color-terminal-dark: #0a0a0a;
-  --color-terminal-darker: #050505;
-  --color-terminal-green: #00ff41;
-  --color-terminal-accent: #bd00ff;
-  --color-terminal-dim: #4a5568;
+  --color-retro-amber: #fbbf24;
+  --color-retro-orange: #d97706;
+  --color-retro-brown: #92400e;
+  --color-retro-tan: #d4a574;
+  --color-retro-muted: #a8854a;
+  --color-retro-dark: #0f0a07;
+  --color-retro-card: #1c1008;
+  --color-green: #22c55e;
 
-  /* Custom font families */
   --font-family-pixel: var(--font-pixel);
   --font-family-mono: var(--font-mono);
 }
@@ -22,9 +22,68 @@
   }
 
   body {
-    background-color: var(--color-terminal-dark);
-    background-image: linear-gradient(to right, #1f1f1f 1px, transparent 1px),
-      linear-gradient(to bottom, #1f1f1f 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-color: var(--color-retro-dark);
+    color: var(--color-retro-tan);
+    font-family: var(--font-family-mono);
+  }
+}
+
+.bg-pixel-grid {
+  background-image: linear-gradient(to right, rgba(146, 64, 14, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(146, 64, 14, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 2px, rgba(0, 0, 0, 0.03) 4px);
+  pointer-events: none;
+  z-index: 50;
+}
+
+@keyframes glitch {
+  0%, 100% { text-shadow: 2px 2px var(--color-retro-brown), -1px -1px var(--color-retro-orange); }
+  20% { text-shadow: -2px 1px var(--color-retro-orange), 1px -2px var(--color-retro-brown); }
+  40% { text-shadow: 1px -1px var(--color-retro-brown), -2px 2px var(--color-retro-orange); }
+  60% { text-shadow: -1px 2px var(--color-retro-orange), 2px -1px var(--color-retro-brown); }
+  80% { text-shadow: 2px -2px var(--color-retro-brown), -1px 1px var(--color-retro-orange); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(251, 191, 36, 0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes number-glitch {
+  0%, 100% { opacity: 1; }
+  33% { opacity: 0.8; content: "##"; }
+  66% { opacity: 0.9; content: "??"; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scanlines::after {
+    display: none;
   }
 }
