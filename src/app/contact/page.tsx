@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import SocialLinks from "@/components/SocialLinks";
 import PageBackground from "@/components/effects/PageBackground";
+import FloatingItems from "@/components/effects/FloatingItems";
+import GlassCard from "@/components/effects/GlassCard";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
@@ -13,7 +15,8 @@ export default function ContactPage() {
   return (
     <div className="relative">
       <PageBackground theme="questboard" />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <FloatingItems theme="questboard" />
+      <GlassCard className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         {/* Header */}
       <div className="flex items-center gap-3 mb-12">
         <h1 className="font-pixel text-2xl font-bold text-retro-amber">START A NEW QUEST</h1>
@@ -39,7 +42,7 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-      </div>
+      </GlassCard>
     </div>
   );
 }
