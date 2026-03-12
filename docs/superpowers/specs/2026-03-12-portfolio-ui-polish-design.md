@@ -6,12 +6,12 @@
 
 ## 1. Overview
 
-Visual overhaul of the existing Neo-Retro pixel portfolio: replace the warm amber/brown color palette with a dark purple/violet scheme inspired by Jules.google, bump all font sizes for readability, and fix 4 UI bugs (scroll-reveal, typing animation, grid columns, page transitions). The retro pixel aesthetic (Press Start 2P, pixel grid, scanlines, glitch effects, particles) is fully preserved.
+Visual overhaul of the existing Neo-Retro pixel portfolio: replace the warm amber/brown color palette with a dark purple/violet scheme inspired by Jules.google, bump all font sizes for readability, and fix 3 UI bugs (scroll-reveal, typing animation, page transitions). The retro pixel aesthetic (Press Start 2P, pixel grid, scanlines, glitch effects, particles) is fully preserved.
 
 ### Goals
 - Make all text readable (high contrast on dark purple background)
 - Minimum 10px for pixel font, 12px for body text
-- Fix broken scroll-reveal, typing animation, grid layout, and page transitions
+- Fix broken scroll-reveal, typing animation, and page transitions
 - Shift color identity from brown/amber to purple/violet
 
 ### Non-Goals
@@ -60,7 +60,8 @@ All colors defined as CSS custom properties in `src/app/globals.css` via Tailwin
 
 ### Inline Hover Glows (in components)
 - All `rgba(251,191,36,...)` (amber glow) → `rgba(167,139,250,...)` (violet glow)
-- Affects: Hero.tsx, ProjectCard.tsx, TechGrid.tsx, ContactForm.tsx, Nav.tsx hover states
+- Affects: Hero.tsx, ProjectCard.tsx, TechGrid.tsx, ContactForm.tsx hover states
+- Nav.tsx has no existing hover glow shadows — only `hover:text-retro-amber` transitions which auto-cascade via token change
 - These are Tailwind arbitrary value classes like `hover:shadow-[0_0_20px_rgba(...)]` — update the rgba values in the class strings
 - Note: `GlitchText.tsx` inline textShadow uses `var(--color-retro-brown)` and `var(--color-retro-orange)` CSS variables — these auto-update via token change, no manual edits needed
 - Note: `template.tsx` CRT flash overlay uses `bg-retro-amber/5` — this auto-cascades with the palette change (will become purple flash, which is desired)
@@ -197,7 +198,7 @@ Rule: **No pixel font (Press Start 2P) below 10px. No body text (JetBrains Mono)
 | `src/components/effects/TypingAnimation.tsx` | Bug fix: strict mode handling |
 | `src/components/effects/ParallaxGrid.tsx` | Grid line color brown → purple |
 | `src/app/template.tsx` | Bug fix: add pathname key for transitions |
-| `src/components/Nav.tsx` | Font sizes + hover glow color |
+| `src/components/Nav.tsx` | Font sizes (hover transitions auto-cascade via tokens) |
 | `src/components/Footer.tsx` | Font sizes |
 | `src/components/Hero.tsx` | Font sizes + hover glow color |
 | `src/components/ProjectCard.tsx` | Font sizes + hover glow color |
