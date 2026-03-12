@@ -16,13 +16,15 @@ Add floating pixel art items and glowing particles throughout the portfolio, and
 ### Rendering Layers (back to front)
 
 ```
--z-10  PageBackground (existing — stars, ground, torches, embers, papers per theme)
--z-5   FloatingItems (NEW — pixel items bobbing at edges + particles pulsing/rising)
-z-0    Walking sprites (existing — warrior/mage in PageBackground's Overworld)
+-z-10  PageBackground (existing — stars, ground, torches, embers, papers, walking sprites)
+z-[-5] FloatingItems (NEW — pixel items bobbing at edges + particles pulsing/rising)
+z-0    ParallaxGrid (existing — background grid pattern)
 z-auto GlassCard content wrapper (NEW — semi-transparent card with blur)
-z-40   Nav (existing)
+z-40   Nav (existing — has backdrop-blur-sm)
 z-50   Scanlines + template flash (existing)
 ```
+
+Note: Walking sprites (warrior/mage) render inside PageBackground's Overworld component, so they inherit the `-z-10` stacking context. FloatingItems at `z-[-5]` sits between PageBackground and ParallaxGrid.
 
 ### New Components
 
@@ -66,11 +68,11 @@ Each page renders 3-4 items from this pool based on theme.
 - `animation-delay`: staggered 0-3s per item
 
 **Glowing particles**:
-- 5-8 small squares (3-4px), color `retro-amber` or `retro-orange`
+- 5-8 small squares (3-4px), all use `retro-amber` color (`#a78bfa`)
 - Two behaviors:
-  - **Pulse** (3-5 particles): fixed position, opacity oscillates 0.15→0.5, with `box-shadow` glow
-  - **Rise** (2-3 particles): start from bottom, translateY upward over 8-12s, fade in/out
-- Distributed across the full width, avoiding center content column
+  - **Pulse** (5 particles): fixed position, opacity oscillates 0.15→0.5, with `box-shadow` glow
+  - **Rise** (3 particles): start from bottom, translateY upward over 8-12s, fade in/out
+- Particles may appear across the full width (they are small and translucent enough to not interfere with content readability)
 
 **Keyframes needed** (add to `globals.css`):
 ```css
@@ -95,10 +97,12 @@ Each page renders 3-4 items from this pool based on theme.
 
 **Component root element**:
 ```tsx
-<div className="fixed inset-0 pointer-events-none -z-5 overflow-hidden" aria-hidden="true">
+<div className="fixed inset-0 pointer-events-none overflow-hidden hidden sm:block" style={{ zIndex: -5 }} aria-hidden="true">
 ```
 
-**DOM budget**: Max 15 nodes per page (3-4 items + 5-8 particles + wrapper divs).
+Uses inline `style={{ zIndex: -5 }}` because `-z-5` is not a valid Tailwind utility (default scale is 0/10/20/30/40/50). Hidden on mobile (`hidden sm:block`) to reduce GPU load and avoid visual clutter on narrow viewports where items would overlap content.
+
+**DOM budget**: Max 12 nodes per page (3 items + 5 pulse particles + 3 rise particles + 1 wrapper). Each item is a single `<div>` with `box-shadow` pixel art (no nesting), matching the PixelSprites pattern.
 
 #### `src/components/effects/GlassCard.tsx` — Server Component (no "use client")
 
@@ -111,18 +115,22 @@ interface GlassCardProps {
 }
 ```
 
-**Styling**:
-```css
-background: rgba(167, 139, 250, 0.06);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-border: 1px solid rgba(167, 139, 250, 0.15);
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(167, 139, 250, 0.1);
+**Styling** — use Tailwind classes where possible, inline style only for complex properties:
+
+```tsx
+// Tailwind classes:
+className="bg-retro-amber/[0.06] border border-retro-amber/15 backdrop-blur-xl"
+
+// Inline style (only for multi-value box-shadow that can't be a single utility):
+style={{
+  WebkitBackdropFilter: "blur(12px)",
+  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(167, 139, 250, 0.1)",
+}}
 ```
 
 No border-radius (follows project's sharp-corners design system).
 
-**Note on inline styles**: The `backdrop-filter`, `box-shadow`, and `background` values are complex multi-value properties that cannot be expressed as single Tailwind utilities. These use inline `style={{}}`, consistent with the existing exemption for PageBackground and PixelSprites.
+**Note on Nav interaction**: Nav already uses `backdrop-blur-sm` (4px). When GlassCard scrolls behind Nav, there will be two blur layers. This is acceptable since the Nav blur is small (4px) and the overlap area is limited. On mobile, GlassCard uses a reduced blur (`backdrop-blur-md` instead of `backdrop-blur-xl`) to reduce GPU compositing load.
 
 ### Modified Files
 
@@ -147,6 +155,34 @@ Each page gets:
 Add `item-bob`, `particle-pulse`, `particle-rise` keyframes (listed above).
 
 These are covered by the existing `@media (prefers-reduced-motion: reduce)` wildcard rule that targets `*, *::before, *::after`.
+
+### TypeScript Interfaces
+
+```typescript
+type ItemType = "sword" | "potion" | "shield" | "scroll" | "gem";
+
+interface ItemConfig {
+  type: ItemType;
+  position: { left?: string; right?: string; top: string };
+  duration: number;
+  delay: number;
+}
+
+interface PulseParticleConfig {
+  left?: string;
+  right?: string;
+  top: string;
+  size: number;
+  duration: number;
+  delay: number;
+}
+
+interface RiseParticleConfig {
+  left: string;
+  duration: number;
+  delay: number;
+}
+```
 
 ### Per-Theme Item Configuration
 
@@ -197,13 +233,16 @@ const RISE_PARTICLES = [
 
 - **No new npm dependencies** — pure CSS animations, box-shadow pixel art
 - **No canvas or JS runtime animations** — CSS keyframes only
-- **Max 15 DOM nodes** per FloatingItems instance
+- **Max 12 DOM nodes** per FloatingItems instance (3 items + 5 pulse + 3 rise + 1 wrapper)
 - **`pointer-events: none`** on FloatingItems root (click-through to content)
 - **`aria-hidden="true"`** on FloatingItems root (decorative only)
 - **`prefers-reduced-motion`** — handled by existing global wildcard rule
-- **Inline styles exception** — acknowledged for box-shadow pixel art, backdrop-filter, complex gradients (same as PageBackground/PixelSprites)
+- **Inline styles exception** — acknowledged for box-shadow pixel art, complex box-shadow gradients (same as PageBackground/PixelSprites). GlassCard uses Tailwind classes where possible.
 - **Sharp corners** — no `border-radius` on GlassCard (design system rule)
-- **Tailwind v4 `-z-5`** — use `z-[-5]` or inline `style={{ zIndex: -5 }}` if `-z-5` is not a valid Tailwind class. Alternatively, use a custom z-index value via inline style.
+- **Z-index** — FloatingItems uses `style={{ zIndex: -5 }}` (not Tailwind class, since `-z-5` is not in default scale)
+- **Mobile** — FloatingItems hidden below `sm` breakpoint (`hidden sm:block`). GlassCard uses `backdrop-blur-md` on mobile, `backdrop-blur-xl` on desktop.
+- **Pixel art data** — box-shadow definitions for the 5 item types (sword, potion, shield, scroll, gem) must be designed during implementation, following the same 2px-scale technique used in PixelSprites.tsx.
+- **`particle-rise` loop** — opacity is 0 at both 0% and 100% keyframes, so the snap-back to origin is invisible. This is acceptable.
 
 ## Files Summary
 
