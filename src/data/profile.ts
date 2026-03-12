@@ -11,25 +11,32 @@ export interface ExperienceEntry {
   current: boolean;
 }
 
+export interface CharacterStat {
+  name: string;
+  value: number;
+}
+
 export interface Profile {
   name: string;
   role: string;
+  level: number;
   bio: string;
   location: string;
   available: boolean;
-  avatar?: string;
   socials: SocialLink[];
   experience: ExperienceEntry[];
   skills: {
     category: string;
     items: string[];
   }[];
+  stats: CharacterStat[];
 }
 
 export const profile: Profile = {
   name: "TU MINH KHOA",
   role: ".NET Backend Developer",
-  bio: "Passionate about building scalable backend systems and microservices. Experienced with .NET, TypeScript, and modern web technologies.",
+  level: 3,
+  bio: "Passionate about building scalable backend systems and microservices. Started coding in 2023 with C# and .NET, quickly diving into distributed systems and modern web technologies. Experienced with full-stack development across .NET, TypeScript, and Java ecosystems. Currently focused on microservices architecture, containerization, and cloud-native patterns.",
   location: "Ho Chi Minh City, Vietnam",
   available: true,
   socials: [
@@ -47,5 +54,11 @@ export const profile: Profile = {
     { category: "FRONTEND", items: ["React", "Next.js", "TypeScript", "Tailwind"] },
     { category: "TOOLS", items: ["Git", "Docker", "Linux", "RabbitMQ", "Redis"] },
     { category: "OTHER", items: ["Java", "WPF", "Microservices"] },
+  ],
+  stats: [
+    { name: "BACKEND", value: 90 },
+    { name: "FRONTEND", value: 55 },
+    { name: "DEVOPS", value: 65 },
+    { name: "DATABASE", value: 75 },
   ],
 };

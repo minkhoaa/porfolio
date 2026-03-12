@@ -11,8 +11,8 @@ interface FilterTabsProps {
 }
 
 const tabs: { value: FilterValue; label: string }[] = [
-  { value: "all", label: "ALL" },
-  { value: "csharp", label: "C#/.NET" },
+  { value: "all", label: "ALL QUESTS" },
+  { value: "csharp", label: "C# / .NET" },
   { value: "typescript", label: "TYPESCRIPT" },
   { value: "java", label: "JAVA" },
 ];

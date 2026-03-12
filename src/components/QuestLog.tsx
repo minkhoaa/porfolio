@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { Project, projects, getProjectsByLanguage } from "@/data/projects";
-import ProjectCard from "@/components/ProjectCard";
+import QuestCard from "@/components/QuestCard";
 import FilterTabs from "@/components/FilterTabs";
 
 type FilterValue = Project["language"] | "all";
 
-export default function ProjectsGrid() {
+export default function QuestLog() {
   const [filter, setFilter] = useState<FilterValue>("all");
   const filtered = getProjectsByLanguage(filter);
 
@@ -21,10 +21,10 @@ export default function ProjectsGrid() {
   return (
     <>
       <div className="flex items-center gap-3 mb-6">
-        <h2 className="font-pixel text-lg text-retro-amber">ALL PROJECTS</h2>
+        <h2 className="font-pixel text-lg text-retro-amber">QUEST LOG</h2>
         <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
         <span className="font-mono text-xs text-retro-brown">
-          {String(filtered.length).padStart(2, "0")} ITEMS
+          {String(filtered.length).padStart(2, "0")} QUESTS
         </span>
       </div>
       <div className="mb-8">
@@ -32,7 +32,7 @@ export default function ProjectsGrid() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((project, i) => (
-          <ProjectCard key={project.slug} project={project} index={i} />
+          <QuestCard key={project.slug} project={project} index={i} />
         ))}
       </div>
     </>

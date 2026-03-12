@@ -6,9 +6,9 @@ import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "HOME" },
-  { href: "/about", label: "ABOUT" },
-  { href: "/projects", label: "PROJECTS" },
-  { href: "/contact", label: "CONTACT" },
+  { href: "/about", label: "CHARACTER" },
+  { href: "/projects", label: "QUESTS" },
+  { href: "/contact", label: "NEW QUEST" },
 ];
 
 export default function Nav() {
@@ -52,8 +52,8 @@ export default function Nav() {
             <a href="#" className="text-retro-muted hover:text-retro-amber text-sm font-mono transition-colors">LI</a>
           </div>
 
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-retro-amber font-pixel text-xs p-2" aria-label="Toggle menu" aria-expanded={menuOpen}>
-            {menuOpen ? "✕" : "≡"}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-retro-amber font-pixel text-[10px] px-3 py-2" aria-label="Toggle menu" aria-expanded={menuOpen}>
+            {menuOpen ? "CLOSE" : "MENU"}
           </button>
         </div>
       </div>

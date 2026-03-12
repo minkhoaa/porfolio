@@ -46,16 +46,16 @@ export default function ContactForm() {
     return (
       <div className="border border-green-500/30 bg-green-500/5 p-6 text-center">
         <p className="font-pixel text-[11px] text-green-500">
-          MESSAGE SENT SUCCESSFULLY
+          QUEST REQUEST SENT
         </p>
         <p className="font-mono text-xs text-retro-muted mt-2">
-          Thank you! I will get back to you soon.
+          I&apos;ll respond to your quest soon.
         </p>
         <button
           onClick={() => setState("idle")}
           className="mt-4 font-mono text-xs text-retro-amber hover:underline"
         >
-          Send another message
+          START ANOTHER QUEST
         </button>
       </div>
     );
@@ -65,7 +65,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="contact-name" className="font-mono text-[10px] text-retro-muted block mb-1">
-          &gt; NAME
+          &gt; YOUR NAME
         </label>
         <input
           id="contact-name"
@@ -78,7 +78,7 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="contact-email" className="font-mono text-[10px] text-retro-muted block mb-1">
-          &gt; EMAIL
+          &gt; YOUR EMAIL
         </label>
         <input
           id="contact-email"
@@ -92,7 +92,7 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="contact-message" className="font-mono text-[10px] text-retro-muted block mb-1">
-          &gt; MESSAGE
+          &gt; QUEST DESCRIPTION
         </label>
         <textarea
           id="contact-message"
@@ -113,7 +113,7 @@ export default function ContactForm() {
         disabled={state === "sending"}
         className="w-full border-2 border-retro-amber px-6 py-3 font-pixel text-[11px] text-retro-amber bg-retro-amber/5 hover:bg-retro-amber/15 transition-all hover:shadow-[0_0_20px_rgba(167,139,250,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {state === "sending" ? "SENDING..." : "SEND_MESSAGE.exe \u25B6"}
+        {state === "sending" ? "SENDING QUEST REQUEST..." : "SEND QUEST REQUEST"}
       </button>
     </form>
   );

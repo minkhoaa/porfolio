@@ -4,8 +4,8 @@ import SocialLinks from "@/components/SocialLinks";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
-  title: "Contact \u2014 KHOA.DEV",
-  description: "Get in touch with Tu Minh Khoa",
+  title: "New Quest — KHOA.DEV",
+  description: "Start a new quest with Tu Minh Khoa",
 };
 
 export default function ContactPage() {
@@ -13,7 +13,7 @@ export default function ContactPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       {/* Header */}
       <div className="flex items-center gap-3 mb-10">
-        <h1 className="font-pixel text-lg text-retro-amber">GET IN TOUCH</h1>
+        <h1 className="font-pixel text-lg text-retro-amber">START A NEW QUEST</h1>
         <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
       </div>
 
@@ -21,7 +21,7 @@ export default function ContactPage() {
         {/* Form */}
         <div>
           <h2 className="font-pixel text-[11px] text-retro-orange mb-4">
-            SEND MESSAGE
+            QUEST DETAILS
           </h2>
           <ContactForm />
         </div>
@@ -29,7 +29,7 @@ export default function ContactPage() {
         {/* Social links */}
         <div>
           <h2 className="font-pixel text-[11px] text-retro-orange mb-4">
-            FIND ME
+            CONNECT
           </h2>
           <SocialLinks links={profile.socials} />
         </div>

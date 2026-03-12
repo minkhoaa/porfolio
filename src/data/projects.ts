@@ -1,3 +1,5 @@
+export type DifficultyLevel = 1 | 2 | 3 | 4 | 5;
+
 export interface Project {
   slug: string;
   name: string;
@@ -12,6 +14,7 @@ export interface Project {
   screenshot?: string;
   featured: boolean;
   order: number;
+  difficulty: DifficultyLevel;
 }
 
 export const projects: Project[] = [
@@ -27,6 +30,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/Project_Langfens_Microservice",
     featured: true,
     order: 1,
+    difficulty: 5,
   },
   {
     slug: "peerzee",
@@ -40,6 +44,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/peerzee-fullstack",
     featured: true,
     order: 2,
+    difficulty: 4,
   },
   {
     slug: "clinic-api",
@@ -53,6 +58,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/Clinic_Management_API",
     order: 3,
     featured: false,
+    difficulty: 3,
   },
   {
     slug: "foodify",
@@ -66,6 +72,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/Foodify-Social-Media-Backend",
     order: 4,
     featured: false,
+    difficulty: 3,
   },
   {
     slug: "english-app",
@@ -79,6 +86,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/EnglishApp-Backend",
     order: 5,
     featured: false,
+    difficulty: 2,
   },
   {
     slug: "wpf-clinic",
@@ -92,6 +100,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/QLPhongMachTu-WPF",
     order: 6,
     featured: false,
+    difficulty: 3,
   },
   {
     slug: "library-management",
@@ -105,6 +114,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/LibraryManagement",
     order: 7,
     featured: false,
+    difficulty: 3,
   },
   {
     slug: "clinic-app",
@@ -118,6 +128,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/ClinicApp",
     order: 8,
     featured: false,
+    difficulty: 2,
   },
   {
     slug: "hr-management",
@@ -131,6 +142,7 @@ export const projects: Project[] = [
     github: "https://github.com/minkhoaa/HR-Management",
     order: 9,
     featured: false,
+    difficulty: 4,
   },
 ];
 
