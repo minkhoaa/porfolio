@@ -84,7 +84,8 @@ All colors are defined as Tailwind v4 `@theme` tokens in `globals.css`:
 ### Visual Hierarchy
 
 - Use **font size and weight** to create hierarchy, not color variation or icons.
-- Section headings: `font-pixel text-lg text-retro-amber` with a gradient divider line.
+- Page headings: `font-pixel text-2xl font-bold text-retro-amber` with a gradient divider line.
+- Section headings: `font-pixel text-base font-semibold text-retro-amber` with a gradient divider line.
 - Card content follows: title (large, `font-pixel`) → description (smaller, `font-mono`) → metadata (smallest, `font-mono`).
 - Whitespace is the primary tool for grouping and separation — generous padding over decorative borders.
 

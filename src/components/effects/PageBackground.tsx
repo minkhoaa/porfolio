@@ -59,7 +59,7 @@ function PixelGround() {
 function Torch({ className, delay = 0 }: { className?: string; delay?: number }) {
   return (
     <div
-      className={`absolute w-1 h-2 ${className}`}
+      className={`absolute w-1 h-2 ${className ?? ""}`}
       style={{
         backgroundColor: "#f59e0b",
         animation: "torch-flicker 0.5s ease-in-out infinite alternate",
@@ -84,8 +84,8 @@ function Dungeon() {
     <div
       className="absolute inset-0"
       style={{
-        background: "linear-gradient(180deg, #0d0b14, #0a0812)",
-        backgroundImage: "repeating-linear-gradient(0deg, transparent 0px, transparent 30px, rgba(76,68,114,0.08) 30px, rgba(76,68,114,0.08) 31px)",
+        backgroundColor: "#0a0812",
+        backgroundImage: "linear-gradient(180deg, #0d0b14, #0a0812), repeating-linear-gradient(0deg, transparent 0px, transparent 30px, rgba(76,68,114,0.08) 30px, rgba(76,68,114,0.08) 31px)",
       }}
     >
       <Torch className="left-8 top-[20%]" />
@@ -164,7 +164,7 @@ function QuestBoard() {
 
 export default function PageBackground({ theme }: PageBackgroundProps) {
   return (
-    <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
       {theme === "overworld" && <Overworld />}
       {theme === "dungeon" && <Dungeon />}
       {theme === "tavern" && <Tavern />}
