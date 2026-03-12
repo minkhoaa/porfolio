@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import Timeline from "@/components/Timeline";
 import StatBar from "@/components/StatBar";
 import PageBackground from "@/components/effects/PageBackground";
+import FloatingItems from "@/components/effects/FloatingItems";
+import GlassCard from "@/components/effects/GlassCard";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
@@ -15,7 +17,8 @@ export default function AboutPage() {
   return (
     <div className="relative">
       <PageBackground theme="tavern" />
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <FloatingItems theme="tavern" />
+      <GlassCard className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="flex items-center gap-3 mb-12">
         <h1 className="font-pixel text-2xl font-bold text-retro-amber">CHARACTER SHEET</h1>
         <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
@@ -85,7 +88,7 @@ export default function AboutPage() {
         </div>
         <Timeline entries={profile.experience} />
       </div>
-      </div>
+      </GlassCard>
     </div>
   );
 }
