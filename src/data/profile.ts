@@ -46,8 +46,8 @@ export const profile: Profile = {
     { platform: "facebook", url: "https://facebook.com/min.khoaaa", label: "facebook.com/min.khoaaa" },
   ],
   experience: [
-    { dateRange: "Mar 2025 — Present", title: "Fullstack Developer (Part-time) — TISOHA Software Solutions", description: "Continuing as a part-time fullstack developer, building end-to-end web applications.", current: true },
-    { dateRange: "Dec 2024 — Feb 2025", title: "Fullstack Developer Intern — TISOHA Software Solutions", description: "Internship developing full-stack features across frontend and backend systems.", current: false },
+    { dateRange: "Mar 2025 — Present", title: "Fullstack Developer (Part-time) — TISOHA Software Solutions", description: "Building and maintaining full-stack web applications with Next.js, TypeScript, and .NET. Responsible for end-to-end feature development, from UI implementation to API design and database integration.", current: true },
+    { dateRange: "Dec 2024 — Feb 2025", title: "Fullstack Developer Intern — TISOHA Software Solutions", description: "Built PeerZee — a full-stack TypeScript application using Next.js, React, and Tailwind CSS. Handled both frontend UI development and backend API integration with server-side rendering and type-safe architecture.", current: false },
     { dateRange: "Aug 2023", title: "Started Coding", description: "Began programming journey with C# and .NET framework.", current: false },
   ],
   skills: [
