@@ -62,7 +62,7 @@ export default async function ProjectDetailPage({ params }: Props) {
     <div className="relative">
       <PageBackground theme="dungeon" />
       <FloatingItems theme="dungeon" />
-      <GlassCard className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <GlassCard className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="font-mono text-xs text-retro-brown mb-8 tracking-wider">
         <Link href="/projects" className="text-retro-muted hover:text-retro-amber transition-colors">QUESTS</Link>
         {" / "}
