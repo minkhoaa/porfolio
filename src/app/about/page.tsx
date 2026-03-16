@@ -42,6 +42,34 @@ export default function AboutPage() {
         </div>
       </div>
 
+      {/* Education */}
+      <div className="mb-14">
+        <div className="flex items-center gap-3 mb-5">
+          <h2 className="font-pixel text-base font-semibold text-retro-amber">EDUCATION</h2>
+          <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
+        </div>
+        <div className="space-y-4">
+          {profile.education.map((entry) => (
+            <div key={`${entry.institution}-${entry.degree}`} className="border border-retro-brown/20 bg-gradient-to-br from-retro-card/40 to-transparent p-5">
+              <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2">
+                <span className="font-pixel text-xs font-medium text-retro-amber/60 pt-0.5">INSTITUTION</span>
+                <span className="font-mono text-sm text-retro-tan">{entry.institution}</span>
+                <span className="font-pixel text-xs font-medium text-retro-amber/60 pt-0.5">DEGREE</span>
+                <span className="font-mono text-sm text-retro-tan">{entry.degree}</span>
+                {entry.gpa && (
+                  <>
+                    <span className="font-pixel text-xs font-medium text-retro-amber/60 pt-0.5">GPA</span>
+                    <span className="font-mono text-sm text-retro-tan">{entry.gpa}</span>
+                  </>
+                )}
+                <span className="font-pixel text-xs font-medium text-retro-amber/60 pt-0.5">PERIOD</span>
+                <span className="font-mono text-sm text-retro-muted">{entry.dateRange}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Backstory */}
       <div className="mb-14">
         <div className="flex items-center gap-3 mb-5">
