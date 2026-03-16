@@ -30,13 +30,14 @@ export interface Profile {
     items: string[];
   }[];
   stats: CharacterStat[];
+  currentlyExploring: string[];
 }
 
 export const profile: Profile = {
   name: "TU MINH KHOA",
   role: "Software Engineering Student · Fullstack Developer",
   level: 3,
-  bio: "I build backend systems with a focus on microservices, system architecture, and clean service design. I work primarily with C# and .NET, and occasionally with NestJS and Java.",
+  bio: "I build full-stack systems with a backend-first mindset — microservices, clean architecture, and distributed design. I work primarily with C# and .NET on the backend, and Next.js and TypeScript on the frontend.",
   location: "Ho Chi Minh City, Viet Nam",
   available: true,
   socials: [
@@ -63,4 +64,5 @@ export const profile: Profile = {
     { name: "DEVOPS", value: 65 },
     { name: "DATABASE", value: 75 },
   ],
+  currentlyExploring: ["RAG", "LangChain"],
 };
