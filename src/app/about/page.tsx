@@ -80,6 +80,21 @@ export default function AboutPage() {
         </div>
       </div>
 
+      {/* Currently Exploring */}
+      <div className="mb-14">
+        <div className="flex items-center gap-3 mb-5">
+          <h2 className="font-pixel text-base font-semibold text-retro-amber">CURRENTLY EXPLORING</h2>
+          <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {profile.currentlyExploring.map((item) => (
+            <span key={item} className="font-mono text-xs text-retro-tan border border-retro-brown/20 bg-retro-card/20 px-3 py-1">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* Adventure Log */}
       <div>
         <div className="flex items-center gap-3 mb-6">
