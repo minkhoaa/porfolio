@@ -10,6 +10,24 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+const langConfig = {
+  csharp: {
+    gradient: "linear-gradient(135deg, #1e1b4b 0%, #2d2570 50%, #1a1340 100%)",
+    accentColor: "#a78bfa",
+    label: "C# · .NET",
+  },
+  typescript: {
+    gradient: "linear-gradient(135deg, #0c1a2e 0%, #0f3460 50%, #091525 100%)",
+    accentColor: "#38bdf8",
+    label: "TypeScript",
+  },
+  java: {
+    gradient: "linear-gradient(135deg, #1c0a00 0%, #431407 50%, #160700 100%)",
+    accentColor: "#fb923c",
+    label: "Java",
+  },
+} as const;
+
 function renderDifficulty(level: DifficultyLevel): string {
   return "■".repeat(level) + "□".repeat(5 - level);
 }
@@ -38,6 +56,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   const prev = currentIndex > 0 ? sortedProjects[currentIndex - 1] : null;
   const next = currentIndex < sortedProjects.length - 1 ? sortedProjects[currentIndex + 1] : null;
   const questNumber = String(project.order).padStart(2, "0");
+  const lang = langConfig[project.language];
 
   return (
     <div className="relative">
@@ -50,13 +69,47 @@ export default async function ProjectDetailPage({ params }: Props) {
         <span className="text-retro-amber">{project.shortName}</span>
       </div>
 
+      {/* Visual quest banner */}
+      <div
+        className="relative h-40 mb-10 overflow-hidden border border-retro-brown/20"
+        style={{ background: lang.gradient }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px)" }}
+        />
+        {project.screenshot && (
+          <img src={project.screenshot} alt={project.name} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+        )}
+        <span
+          className="absolute right-6 top-1/2 -translate-y-1/2 font-pixel text-8xl select-none"
+          style={{ color: `${lang.accentColor}18` }}
+        >
+          {questNumber}
+        </span>
+        <div
+          className="absolute bottom-0 left-0 right-0 px-6 py-3 flex items-center gap-4"
+          style={{ background: "linear-gradient(to top, rgba(13,11,20,0.85) 0%, transparent 100%)" }}
+        >
+          <span
+            className="font-pixel text-xs tracking-widest px-2.5 py-1 border"
+            style={{ color: lang.accentColor, borderColor: `${lang.accentColor}40`, backgroundColor: `${lang.accentColor}12` }}
+          >
+            {lang.label}
+          </span>
+          <span className="font-mono text-xs text-retro-muted/60 ml-auto tracking-wider">
+            DIFFICULTY {renderDifficulty(project.difficulty)}
+          </span>
+        </div>
+      </div>
+
       <p className="font-pixel text-sm font-medium text-retro-muted/60 mb-2 tracking-wider">QUEST {questNumber}</p>
 
       <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
         <div>
           <h1 className="font-pixel text-3xl sm:text-4xl font-bold text-retro-amber leading-relaxed">{project.name}</h1>
           <p className="font-mono text-sm text-retro-orange/80 mt-3">{project.description}</p>
-          <p className="font-mono text-xs text-retro-amber/70 mt-3 tracking-[0.2em]">DIFFICULTY {renderDifficulty(project.difficulty)}</p>
+
         </div>
         <div className="flex gap-3 shrink-0">
           <a href={project.github} target="_blank" rel="noopener noreferrer" className="border-2 border-retro-amber px-5 py-2 font-mono text-xs text-retro-amber bg-retro-amber/5 hover:bg-retro-amber/15 transition-all duration-300 hover:shadow-[0_0_20px_rgba(167,139,250,0.15)]">VIEW SOURCE</a>
