@@ -11,6 +11,13 @@ export interface ExperienceEntry {
   current: boolean;
 }
 
+export interface EducationEntry {
+  dateRange: string;
+  institution: string;
+  degree: string;
+  gpa?: string;
+}
+
 export interface CharacterStat {
   name: string;
   value: number;
@@ -25,6 +32,7 @@ export interface Profile {
   available: boolean;
   socials: SocialLink[];
   experience: ExperienceEntry[];
+  education: EducationEntry[];
   skills: {
     category: string;
     items: string[];
@@ -51,6 +59,14 @@ export const profile: Profile = {
     { dateRange: "Feb 2025 — Present", title: "Fullstack Developer & DevOps Intern — Morca Labs", description: "Internship handling full-stack development and DevOps engineering. Building web applications and managing CI/CD pipelines, containerized deployments, and infrastructure.", current: true },
     { dateRange: "Dec 2024 — Feb 2025", title: "Fullstack Developer Intern — TISOHA Software Solutions", description: "Built PeerZee — a full-stack social discovery platform using Next.js, NestJS, PostgreSQL, and Redis. Implemented AI matchmaking with pgvector, real-time chat via Socket.IO, and WebRTC video dating rooms.", current: false },
     { dateRange: "Aug 2023", title: "Started Coding", description: "Began programming journey with C# and .NET framework.", current: false },
+  ],
+  education: [
+    {
+      dateRange: "Aug 2023 — Present",
+      institution: "VNUHCM - University of Information Technology",
+      degree: "Bachelor of Software Engineering",
+      gpa: "3.5 / 4.0",
+    },
   ],
   skills: [
     { category: "BACKEND", items: ["C#", ".NET", "ASP.NET", "NestJS", "SQL Server"] },
