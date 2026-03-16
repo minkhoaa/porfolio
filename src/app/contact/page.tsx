@@ -16,7 +16,7 @@ export default function ContactPage() {
     <div className="relative">
       <PageBackground theme="questboard" />
       <FloatingItems theme="questboard" />
-      <GlassCard className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <GlassCard className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         {/* Header */}
       <div className="flex items-center gap-3 mb-12">
         <h1 className="font-pixel text-2xl font-bold text-retro-amber">START A NEW QUEST</h1>
