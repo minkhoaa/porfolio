@@ -18,7 +18,7 @@ export default function AboutPage() {
     <div className="relative">
       <PageBackground theme="tavern" />
       <FloatingItems theme="tavern" />
-      <GlassCard className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <GlassCard className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="flex items-center gap-3 mb-12">
         <h1 className="font-pixel text-2xl font-bold text-retro-amber">CHARACTER SHEET</h1>
         <div className="flex-1 h-px bg-gradient-to-r from-retro-amber/30 to-transparent" />
