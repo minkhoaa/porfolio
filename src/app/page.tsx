@@ -5,6 +5,7 @@ import PageBackground from "@/components/effects/PageBackground";
 import FloatingItems from "@/components/effects/FloatingItems";
 import GlassCard from "@/components/effects/GlassCard";
 import { getFeaturedProjects, projects } from "@/data/projects";
+import GuildRecords from "@/components/GuildRecords";
 
 export default function Home() {
   const featured = getFeaturedProjects();
@@ -14,6 +15,10 @@ export default function Home() {
       <PageBackground theme="overworld" />
       <FloatingItems theme="overworld" />
       <Hero />
+
+      <div className="section-divider max-w-6xl mx-auto" />
+
+      <GuildRecords />
 
       <div className="section-divider max-w-6xl mx-auto" />
 
