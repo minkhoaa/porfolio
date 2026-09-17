@@ -18,11 +18,11 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KHOA.DEV — Fullstack Developer",
-  description: "Tu Minh Khoa — Fullstack Developer based in Ho Chi Minh City. Building scalable systems and web applications.",
+  title: "KHOA.DEV — AI Engineer",
+  description: "Tu Minh Khoa — AI Engineer & Backend Developer based in Ho Chi Minh City. Building LLM systems, RAG pipelines, and high-performance backends.",
   openGraph: {
-    title: "KHOA.DEV — Fullstack Developer",
-    description: "Tu Minh Khoa — Fullstack Developer. C#, .NET, TypeScript, React.",
+    title: "KHOA.DEV — AI Engineer",
+    description: "Tu Minh Khoa — AI Engineer & Backend Developer. Python, .NET, TypeScript, LangGraph, RAG.",
     type: "website",
   },
 };

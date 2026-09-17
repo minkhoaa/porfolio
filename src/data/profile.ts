@@ -43,9 +43,9 @@ export interface Profile {
 
 export const profile: Profile = {
   name: "TU MINH KHOA",
-  role: "Software Engineering Student · Fullstack Developer",
-  level: 3,
-  bio: "I build full-stack systems with a backend-first mindset — microservices, clean architecture, and distributed design. I work primarily with C# and .NET on the backend, and Next.js and TypeScript on the frontend.",
+  role: "AI Engineer · Backend Developer",
+  level: 4,
+  bio: "Final-year Software Engineering student (UIT, expected May 2027). I build LLM systems end-to-end: RAG evaluation pipelines with independent LLM judges, LoRA adapters and Wav2Vec2 inference on CPU, agentic pipelines with LangGraph, and constraint optimization with Google OR-Tools.",
   location: "Ho Chi Minh City, Viet Nam",
   available: true,
   socials: [
@@ -55,30 +55,44 @@ export const profile: Profile = {
     { platform: "facebook", url: "https://facebook.com/min.khoaaa", label: "facebook.com/min.khoaaa" },
   ],
   experience: [
-    { dateRange: "Mar 2025 — Present", title: "Fullstack Developer (Part-time) — TISOHA Software Solutions", description: "Building and maintaining full-stack web applications with Next.js, TypeScript, and .NET. Responsible for end-to-end feature development, from UI implementation to API design and database integration.", current: true },
-    { dateRange: "Feb 2025 — Present", title: "Fullstack Developer & DevOps Intern — Morca Labs", description: "Internship handling full-stack development and DevOps engineering. Building web applications and managing CI/CD pipelines, containerized deployments, and infrastructure.", current: true },
-    { dateRange: "Dec 2024 — Feb 2025", title: "Fullstack Developer Intern — TISOHA Software Solutions", description: "Built PeerZee — a full-stack social discovery platform using Next.js, NestJS, PostgreSQL, and Redis. Implemented AI matchmaking with pgvector, real-time chat via Socket.IO, and WebRTC video dating rooms.", current: false },
-    { dateRange: "Aug 2023", title: "Started Coding", description: "Began programming journey with C# and .NET framework.", current: false },
+    {
+      dateRange: "Dec 2025 — Sep 2026",
+      title: "AI Engineer (Internship → Part-Time) — TISOHA Software Solutions",
+      description: "Enterprise Client Project (AI Logistics Dispatch Scheduler): Built pre-training data normalization pipelines structuring ~2GB raw logistics data for LLM fine-tuning. Implemented JSON-schema output validation for Google OR-Tools CP-SAT solver and Redis caching on inference paths to avoid redundant re-inference.",
+      current: true,
+    },
+    {
+      dateRange: "Feb 2025 — Present",
+      title: "Fullstack & DevOps Intern — Morca Labs",
+      description: "Building distributed microservices and managing CI/CD pipelines, Docker containerized deployments, and Linux server infrastructure.",
+      current: true,
+    },
+    {
+      dateRange: "Aug 2023",
+      title: "Started Coding",
+      description: "Began software engineering journey at VNUHCM-UIT focusing on C#, .NET, and distributed systems architecture.",
+      current: false,
+    },
   ],
   education: [
     {
-      dateRange: "Aug 2023 — Present",
+      dateRange: "Aug 2023 — Expected May 2027",
       institution: "VNUHCM - University of Information Technology",
       degree: "Bachelor of Software Engineering",
       gpa: "3.5 / 4.0",
     },
   ],
   skills: [
-    { category: "BACKEND", items: ["C#", ".NET", "ASP.NET", "NestJS", "SQL Server"] },
-    { category: "FRONTEND", items: ["React", "Next.js", "TypeScript", "Tailwind"] },
-    { category: "TOOLS", items: ["Git", "Docker", "Linux", "RabbitMQ", "SQL Server"] },
-    { category: "OTHER", items: ["Java", "Spring Boot", "WPF", "Microservices"] },
+    { category: "AI & MACHINE LEARNING", items: ["LLM Fine-tuning (LoRA/PEFT)", "RAG Architectures", "LangGraph", "Prompt Engineering", "Google OR-Tools (CP-SAT)", "faster-whisper", "Wav2Vec2 (PyTorch)"] },
+    { category: "VECTOR & DATA SYSTEMS", items: ["Qdrant", "pgvector (HNSW)", "PostgreSQL", "Redis", "Pydantic v2", "Data Normalization"] },
+    { category: "BACKEND & INFRASTRUCTURE", items: ["FastAPI", "ASP.NET Core (.NET 10)", "NestJS", "RabbitMQ", "Docker Compose", "Linux"] },
+    { category: "LANGUAGES & EVALUATION", items: ["Python", "TypeScript", "C#", "k6", "Jest", "LLM-as-judge evaluation"] },
   ],
   stats: [
+    { name: "AI SYSTEMS", value: 92 },
     { name: "BACKEND", value: 90 },
-    { name: "FRONTEND", value: 55 },
-    { name: "DEVOPS", value: 65 },
-    { name: "DATABASE", value: 75 },
+    { name: "VECTOR DB", value: 85 },
+    { name: "DEVOPS", value: 70 },
   ],
-  currentlyExploring: ["RAG", "LangChain"],
+  currentlyExploring: ["Agentic Workflows (LangGraph)", "Operations Research + LLMs", "LLM-as-Judge Evaluation", "Local Model Serving"],
 };
