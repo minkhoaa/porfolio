@@ -11,7 +11,7 @@ export default function SocialLinks({ links }: SocialLinksProps) {
         <a
           key={link.platform}
           href={link.url}
-          target={link.platform !== "email" ? "_blank" : undefined}
+          target={link.platform !== "email" && link.platform !== "phone" ? "_blank" : undefined}
           rel="noopener noreferrer"
           className="border border-retro-brown/20 bg-retro-card/20 p-3 hover:border-retro-amber/40 hover:translate-x-1 transition-all group"
         >

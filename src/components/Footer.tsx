@@ -10,8 +10,8 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-5">
             {profile.socials.map((social) => (
-              <a key={social.platform} href={social.url} target={social.platform !== "email" ? "_blank" : undefined} rel="noopener noreferrer" className="font-mono text-xs text-retro-muted hover:text-retro-amber transition-colors duration-200">
-                {{ github: "GH", linkedin: "LI", email: "EM", facebook: "FB" }[social.platform]}
+              <a key={social.platform} href={social.url} target={social.platform !== "email" && social.platform !== "phone" ? "_blank" : undefined} rel="noopener noreferrer" className="font-mono text-xs text-retro-muted hover:text-retro-amber transition-colors duration-200">
+                {{ github: "GH", linkedin: "LI", email: "EM", facebook: "FB", phone: "TEL" }[social.platform]}
               </a>
             ))}
           </div>

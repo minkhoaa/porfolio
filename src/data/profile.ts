@@ -1,5 +1,5 @@
 export interface SocialLink {
-  platform: "github" | "linkedin" | "email" | "facebook";
+  platform: "github" | "linkedin" | "email" | "facebook" | "phone";
   url: string;
   label: string;
 }
@@ -29,6 +29,7 @@ export interface Profile {
   level: number;
   bio: string;
   location: string;
+  phone: string;
   available: boolean;
   socials: SocialLink[];
   experience: ExperienceEntry[];
@@ -47,11 +48,13 @@ export const profile: Profile = {
   level: 4,
   bio: "Final-year Software Engineering student (UIT, expected May 2027). I build LLM systems end-to-end: RAG evaluation pipelines with independent LLM judges, LoRA adapters and Wav2Vec2 inference on CPU, agentic pipelines with LangGraph, and constraint optimization with Google OR-Tools.",
   location: "Ho Chi Minh City, Viet Nam",
+  phone: "(+84) 378 643 548",
   available: true,
   socials: [
+    { platform: "phone", url: "tel:0378643548", label: "(+84) 378 643 548" },
+    { platform: "email", url: "mailto:tukhoa040505@gmail.com", label: "tukhoa040505@gmail.com" },
     { platform: "github", url: "https://github.com/minkhoaa", label: "github.com/minkhoaa" },
     { platform: "linkedin", url: "https://linkedin.com/in/min-khoaa", label: "linkedin.com/in/min-khoaa" },
-    { platform: "email", url: "mailto:tukhoa040505@gmail.com", label: "tukhoa040505@gmail.com" },
     { platform: "facebook", url: "https://facebook.com/min.khoaaa", label: "facebook.com/min.khoaaa" },
   ],
   experience: [
